@@ -1,0 +1,1 @@
+Here you can read how to use the application & version info etc.
