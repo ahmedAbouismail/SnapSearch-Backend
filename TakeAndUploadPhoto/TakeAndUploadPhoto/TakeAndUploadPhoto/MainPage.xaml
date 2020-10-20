@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TakeAndUploadPhoto.MainPage">
+
+    <StackLayout Orientation="Vertical">
+        <Button Text="Choose a photo"
+                BackgroundColor="PaleTurquoise"
+                TextColor="LightSkyBlue"
+                FontSize="30"
+                Clicked="ChoosePhoto_Clicked"></Button>
+
+        <Button Text="Take a picture"
+                BackgroundColor="PaleTurquoise"
+                TextColor="LightSkyBlue"
+                FontSize="30"
+                Clicked="TakePhoto_Clicked"/>
+
+        <Image x:Name="FileImage"
+               WidthRequest="400"
+               HeightRequest="200"></Image>
+
+        <Label x:Name="LocalPathLabel"
+               TextColor="Gray"
+               FontSize="10"/>
+        
+        <Button Text="Upload Photo"
+                BackgroundColor="PaleTurquoise"
+                TextColor="LightSkyBlue"
+                FontSize="30"
+                Clicked="UploadPhoto_Clicked"></Button>
+
+        <Label x:Name="RemotePathLabel"
+               FontSize="10"
+               TextColor="Gray"></Label>
+
+        
+
+
+
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "DeSWK++RgP6QS6u2NTLPy9eiW+E2GConmcGsuQNhB63+2ngLmq0zDjHjanlyZ7cdWmVP7LTKNe0uvFH9sPMLFw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\admin\\source\\repos\\TakeAndUploadPhoto\\TakeAndUploadPhoto\\TakeAndUploadPhoto.iOS\\TakeAndUploadPhoto.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\xam.plugin.media\\5.0.1\\xam.plugin.media.5.0.1.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\xamarin.forms\\4.6.0.1180\\xamarin.forms.4.6.0.1180.nupkg.sha512"
+  ],
+  "logs": []
+}
