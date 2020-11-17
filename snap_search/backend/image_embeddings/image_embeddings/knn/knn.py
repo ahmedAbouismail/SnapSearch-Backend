@@ -7,6 +7,7 @@ import numpy as np
 import random
 import json
 import pyarrow.parquet as pq
+import os
 
 def read_embeddings(path):
     emb = pq.read_table(path).to_pandas()
@@ -41,15 +42,26 @@ def get_results(path, k):
     for key, name in id_to_name.items():
         if name == "search":
             p = key
-    print(id_to_name[p]) 
     res = search(index, id_to_name, embeddings[p], k)
     results = {}
+    currentDir = os.path.dirname(__file__)
+
     for score, image_id in res:
-        d = {
-            str(image_id): {
-                'score': "{:.3f}".format(float(score))
+        if str(image_id) == name:
+            d = {     
+                str(image_id): {
+                    'score': "{:.3f}".format(float(score)),
+                    'link': os.path.abspath(os.path.join(currentDir,f"../../tf_input_image/{str(image_id)}.jpeg"))
+                }
             }
-        }
+        else:
+            d = {     
+                str(image_id): {
+                    'score': "{:.3f}".format(float(score)),
+                    'link': os.path.abspath(os.path.join(currentDir,f"../../tf_flower_images/{str(image_id)}.jpeg"))
+                }
+            }    
+        
         results.update(d)  
     return json.dumps(results, indent=2)  
 
