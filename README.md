@@ -28,9 +28,13 @@ export FLASK_APP=server.py
 python -m flask run
 ```
 
-Endpoints:
+
+#### Endpoints:
 ```http://127.0.0.1:5000/uploadimage/<int:result_num>```  Where ```/<int:result_num>``` is the amount of the photos needed in the result
 
+#### Client server use 
+Use the endpoint above to send a ```post``` request.
+The image-to-search-with should be sent in the body with ```form-data```
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -38,10 +42,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 
-Copyright <2020> <SINAN TUTAN, AHMED ABOUISMAIL, ABDELRAHMAN MOHAMED>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+[License](https://gitlab.rz.htw-berlin.de/softwareentwicklungsprojekt/wise2020-21/team9/-/blob/master/LICENSE)
