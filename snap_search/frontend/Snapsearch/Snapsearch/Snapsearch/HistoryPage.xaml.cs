@@ -10,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Snapsearch
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ChoosingPhotoPage : ContentPage
+    public partial class HistoryPage : ContentPage
     {
-        public ChoosingPhotoPage()
+        public HistoryPage()
         {
             InitializeComponent();
-            
         }
     }
 }
