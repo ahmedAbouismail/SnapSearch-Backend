@@ -25,8 +25,3 @@ def process_image(result_num):
 if __name__ == "_main_":
     app.run(debug=True)
 
-
-
-
-# export FLASK_APP=run_app.py
-# python -m flask run
