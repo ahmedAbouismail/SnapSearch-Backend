@@ -4,21 +4,23 @@
              x:Class="Snapsearch.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        <!-- Text before the logo -->
+        <Label Text="Welcome to" FontSize="16" Padding="0,100,10,0" HorizontalOptions="Center"/>
+        <!-- Snapsearch logo with text -->
+        <Image Source="snapsearch_logo"
+               WidthRequest="{OnPlatform iOS=300, Android=250}"
+               HorizontalOptions="Center" />
+        <!-- Snapsearch image on the home page -->
+        <Image Source="snapsearch_homepageimage"
+               WidthRequest="{OnPlatform iOS=300, Android=250}"
+               Margin="0,50,0,0"
+               HorizontalOptions="Center" />
+        <!-- Text block telling the user how to use the app -->
+        <Label Text="Start by taking a picture with your camera" FontSize="14" Padding="0,10,0,0" HorizontalOptions="Center"/>
+        <Label Text="or pick a picture from your gallery" FontSize="14" HorizontalOptions="Center"/>
+         <!-- Snapsearch "Start Searching" button --> 
+        <Button ImageSource="snapsearch_button_startsearching"
+                Margin="275,100,200,0"></Button>
     </StackLayout>
 
 </ContentPage>

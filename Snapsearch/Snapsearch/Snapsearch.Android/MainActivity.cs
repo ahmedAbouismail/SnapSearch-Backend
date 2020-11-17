@@ -9,7 +9,10 @@ using Android.OS;
 
 namespace Snapsearch.Droid
 {
-    [Activity(Label = "Snapsearch", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    // 16.11.2020 - removed MainLauncher attribute from Activity
+    // Refer to https://docs.microsoft.com/en-us/xamarin/android/user-interface/splash-screen
+    // SplashActivity.cs is now the new MainLauncher
+    [Activity(Label = "Snapsearch", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
