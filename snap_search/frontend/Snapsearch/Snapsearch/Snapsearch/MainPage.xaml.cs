@@ -19,5 +19,10 @@ namespace Snapsearch
         {
             await Navigation.PushAsync(new NavigationPage(new ChoosingPhotoPage()));
         }
+
+        private async void PH_ResultsPageButton_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NavigationPage(new ResultsPage()));
+        }
     }
 }

@@ -3,7 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Snapsearch.MainPage"
              NavigationPage.HasNavigationBar="false">
-
+    <!-- Resources for the page -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ButtonBackgroundColor">Transparent</Color>
+            <!-- Style for ImageButtons -->
+            <Style x:Key="ButtonStyle" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout>
         <!-- Text before the logo -->
         <Label Text="Welcome to" FontSize="16" Padding="0,10,0,0" HorizontalOptions="Center"/>
@@ -20,8 +30,9 @@
         <Label Text="Start by taking a picture with your camera" FontSize="14" Padding="0,10,0,0" HorizontalOptions="Center"/>
         <Label Text="or pick a picture from your gallery" FontSize="14" HorizontalOptions="Center"/>
         <!-- Snapsearch "Start Searching" button --> 
-        <Button ImageSource="snapsearch_button_startsearching" BackgroundColor="Transparent"
-                Margin="130,100,0,0" Clicked="StartSearchingButton_OnClicked"></Button>
+        <ImageButton Source="snapsearch_button_startsearching" Style="{StaticResource ButtonStyle}"
+                Margin="130,100,0,0" Clicked="StartSearchingButton_OnClicked"></ImageButton>
+        <Button Text="PH: ResultsPage" Margin="0,10,0,0" Clicked="PH_ResultsPageButton_OnClicked" ></Button>
     </StackLayout>
 
 </ContentPage>

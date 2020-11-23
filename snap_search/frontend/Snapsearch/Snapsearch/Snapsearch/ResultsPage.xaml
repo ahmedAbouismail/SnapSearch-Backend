@@ -1,12 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Snapsearch.ViewModels"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="Snapsearch.ResultsPage">
+    <!-- Implement MainViewModel in the page -->
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <AbsoluteLayout>
+            <ScrollView BackgroundColor="White"
+                        AbsoluteLayout.LayoutBounds="20, 100, .9, 1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional"
+                        >
+                <FlexLayout
+                    
+                    BindableLayout.ItemsSource="{Binding Images}"
+                    JustifyContent="SpaceAround"
+                    Direction="Row"
+                    HeightRequest="1320"
+                    WidthRequest="500"
+                    Wrap="Wrap"
+                    >
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                            <pancakeView:PancakeView CornerRadius="10"
+                                                     Margin="10"
+                                                     HeightRequest="160"
+                                                     WidthRequest="160"
+                                                     VerticalOptions="Center"
+                                                     BackgroundColor="CadetBlue">
+                                <Grid>
+                                    <BoxView WidthRequest="30"
+                                             HeightRequest="30"
+                                             HorizontalOptions="End"
+                                             Opacity=".5"
+                                             VerticalOptions="Start"
+                                             Color="White"
+                                             />
+                                    <StackLayout >
+                                        <Label
+                                            FontSize="10"
+                                            Margin="20,120"
+                                            Text="{Binding ImageName}"></Label>
+                                    </StackLayout>
+                                </Grid>
+                            </pancakeView:PancakeView>
+                        </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </ScrollView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
