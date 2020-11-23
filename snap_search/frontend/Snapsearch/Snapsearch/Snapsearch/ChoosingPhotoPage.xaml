@@ -1,27 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Snapsearch.ChoosingPhotoPage"
-             NavigationPage.HasNavigationBar="false">
+<ContentPage
+    x:Class="Snapsearch.ChoosingPhotoPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
-            
-        <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="End" Padding="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
+
+        <Grid
+            Padding="0"
+            ColumnSpacing="0"
+            RowSpacing="0"
+            VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-                <Label  BackgroundColor="Black"  HorizontalOptions="Fill" VerticalOptions="Fill"></Label>
-                <Label BackgroundColor="DarkGray" Grid.Row="1"></Label>
-                <ImageButton Source="snapsearch_button_gallery" BackgroundColor="DarkGray" Grid.Column="1" Grid.Row="1" ></ImageButton>
-                <ImageButton Source="snapsearch_button_camera" BackgroundColor="DarkGray" Grid.Column="2" Grid.Row="1"></ImageButton>
-                <Label BackgroundColor="DarkGray" Grid.Column="3" Grid.Row="1"></Label>
-            </Grid>
+            <Label
+                BackgroundColor="Black"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
+            <Label Grid.Row="1" BackgroundColor="DarkGray" />
+            <ImageButton
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="DarkGray"
+                Source="snapsearch_button_gallery" />
+            <ImageButton
+                Grid.Row="1"
+                Grid.Column="2"
+                BackgroundColor="DarkGray"
+                Source="snapsearch_button_camera" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="3"
+                BackgroundColor="DarkGray" />
+        </Grid>
 
     </ContentPage.Content>
 </ContentPage>

@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Snapsearch.MainPage"
-             NavigationPage.HasNavigationBar="false">
-    <!-- Resources for the page -->
+<ContentPage
+    x:Class="Snapsearch.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="false">
+    <!--  Resources for the page  -->
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="ButtonBackgroundColor">Transparent</Color>
-            <!-- Style for ImageButtons -->
+            <!--  Style for ImageButtons  -->
             <Style x:Key="ButtonStyle" TargetType="ImageButton">
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
                 <Setter Property="CornerRadius" Value="10" />
@@ -15,24 +16,45 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-        <!-- Text before the logo -->
-        <Label Text="Welcome to" FontSize="16" Padding="0,10,0,0" HorizontalOptions="Center"/>
-        <!-- Snapsearch logo with text -->
-        <Image Source="snapsearch_logo"
-               WidthRequest="{OnPlatform iOS=300, Android=250}"
-               HorizontalOptions="Center" />
-        <!-- Snapsearch image on the home page -->
-        <Image Source="snapsearch_homepageimage"
-               WidthRequest="{OnPlatform iOS=300, Android=250}"
-               Margin="0,50,0,0"
-               HorizontalOptions="Center" />
-        <!-- Text block telling the user how to use the app -->
-        <Label Text="Start by taking a picture with your camera" FontSize="14" Padding="0,10,0,0" HorizontalOptions="Center"/>
-        <Label Text="or pick a picture from your gallery" FontSize="14" HorizontalOptions="Center"/>
-        <!-- Snapsearch "Start Searching" button --> 
-        <ImageButton Source="snapsearch_button_startsearching" Style="{StaticResource ButtonStyle}"
-                Margin="130,100,0,0" Clicked="StartSearchingButton_OnClicked"></ImageButton>
-        <Button Text="PH: ResultsPage" Margin="0,10,0,0" Clicked="PH_ResultsPageButton_OnClicked" ></Button>
+        <!--  Text before the logo  -->
+        <Label
+            Padding="0,10,0,0"
+            FontSize="16"
+            HorizontalOptions="Center"
+            Text="Welcome to" />
+        <!--  Snapsearch logo with text  -->
+        <Image
+            HorizontalOptions="Center"
+            Source="snapsearch_logo"
+            WidthRequest="{OnPlatform iOS=300,
+                                      Android=250}" />
+        <!--  Snapsearch image on the home page  -->
+        <Image
+            Margin="0,50,0,0"
+            HorizontalOptions="Center"
+            Source="snapsearch_homepageimage"
+            WidthRequest="{OnPlatform iOS=300,
+                                      Android=250}" />
+        <!--  Text block telling the user how to use the app  -->
+        <Label
+            Padding="0,10,0,0"
+            FontSize="14"
+            HorizontalOptions="Center"
+            Text="Start by taking a picture with your camera" />
+        <Label
+            FontSize="14"
+            HorizontalOptions="Center"
+            Text="or pick a picture from your gallery" />
+        <!--  Snapsearch "Start Searching" button  -->
+        <ImageButton
+            Margin="130,100,0,0"
+            Clicked="StartSearchingButton_OnClicked"
+            Source="snapsearch_button_startsearching"
+            Style="{StaticResource ButtonStyle}" />
+        <Button
+            Margin="0,10,0,0"
+            Clicked="PH_ResultsPageButton_OnClicked"
+            Text="PH: ResultsPage" />
     </StackLayout>
 
 </ContentPage>
