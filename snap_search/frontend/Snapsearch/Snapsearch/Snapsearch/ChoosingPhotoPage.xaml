@@ -6,41 +6,43 @@
     NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
 
-        <Grid
-            Padding="0"
-            ColumnSpacing="0"
-            RowSpacing="0"
-            VerticalOptions="End">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Label
-                BackgroundColor="Black"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill" />
-            <Label Grid.Row="1" BackgroundColor="DarkGray" />
-            <ImageButton
-                Grid.Row="1"
-                Grid.Column="1"
-                BackgroundColor="DarkGray"
-                Source="snapsearch_button_gallery" />
-            <ImageButton
-                Grid.Row="1"
-                Grid.Column="2"
-                BackgroundColor="DarkGray"
-                Source="snapsearch_button_camera" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="3"
-                BackgroundColor="DarkGray" />
-        </Grid>
+        <StackLayout Orientation="Vertical">
+            <Button Text="Choose a photo"
+                    BackgroundColor="PaleTurquoise"
+                    TextColor="LightSkyBlue"
+                    FontSize="30"
+                    Clicked="ChoosePhoto_Clicked"></Button>
+
+            <Ellipse Fill="Red"
+                     WidthRequest="150"
+                     HeightRequest="50"
+                     HorizontalOptions="Start" />
+
+            <Button Text="Take a picture (DONT CLICK)"
+                    BackgroundColor="PaleTurquoise"
+                    TextColor="LightSkyBlue"
+                    FontSize="30"
+                    x:Name="TakePhoto" x:FieldModifier="public"
+                    Clicked="TakePhoto_OnClicked_"/>
+
+            <Image x:Name="FileImage"
+                   WidthRequest="400"
+                   HeightRequest="200"></Image>
+
+            <Label x:Name="LocalPathLabel"
+                   TextColor="Gray"
+                   FontSize="10"/>
+
+            <Button Text="Upload Photo (DONT CLICK)"
+                    BackgroundColor="PaleTurquoise"
+                    TextColor="LightSkyBlue"
+                    FontSize="30"
+                    Clicked="UploadPhoto_Clicked"></Button>
+
+            <Label x:Name="RemotePathLabel"
+                   FontSize="10"
+                   TextColor="Gray"></Label>
+        </StackLayout>
 
     </ContentPage.Content>
 </ContentPage>
