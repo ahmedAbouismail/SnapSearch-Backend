@@ -1,4 +1,4 @@
-# Snabearch Backend
+# SnapSearch Backend
 
 Snapserch is a CBIR search app
 
