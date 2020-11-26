@@ -6,22 +6,35 @@ from PIL import Image
 import os
 import io
 
+
+
+
 app = Flask(__name__)
 
-@app.route('/uploadimage/<int:result_num>', methods=['GET','POST'])
+
+@app.route('/uploadimage/<int:result_num>', methods=['POST'])
 def process_image(result_num):
     file = request.files['input_img']
     img = Image.open(file.stream)
-    currentDir = os.path.dirname(__file__)
+    current_dir = os.path.dirname(__file__)
+    target = f'{current_dir}/system_files/tf_input_image'
     img.save('search.jpeg')
-    os.replace(f'{currentDir}/search.jpeg', f'{currentDir}/tf_input_image/search.jpeg')
-    write_tfrecord ('tf_input_image', 'tf_flower_tf_records')
-    run_inference('tf_flower_tf_records', 'tf_flower_embeddings')
-    result = get_results('tf_flower_embeddings', result_num)
+    
+    if not os.path.exists(target):
+        os.makedirs(target)
+
+    os.replace(f'{current_dir}/search.jpeg', f'{target}/search.jpeg')
+    write_tfrecord ()
+    run_inference()
+    result = get_results(k=result_num)
     return result
 
+@app.route('/createrecords', methods=['GET'])
+def create_records():
+    write_tfrecord (single_photo=False)
+    run_inference(single_photo=False)
+    return 'Records were successfully created'
 
 
-if __name__ == "_main_":
-    app.run(debug=True)
-
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0" ,port=5000) 

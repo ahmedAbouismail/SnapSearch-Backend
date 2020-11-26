@@ -6,6 +6,10 @@ import pyarrow.parquet as pq
 import pyarrow as pa
 from pathlib import Path
 
+database_folder = 'system_files/tf_flower_images'
+input_image_folder = 'system_files/tf_input_image'
+tf_output = 'system_files/tf_flower_tf_records'
+embeddings_output = 'system_files/tf_flower_embeddings'
 
 def _int64_feature(value):
     """Returns an int64_list from a bool / enum / int / uint."""
@@ -159,17 +163,19 @@ def run_inference_from_files(image_folder, output_folder, batch_size=1000, singl
     compute_save_embeddings(list_ds, output_folder, num_shards, model, batch_size, single_photo)
 
 
-def write_tfrecord(image_folder, output_folder, single_photo=True):
+def write_tfrecord(output_folder=tf_output, single_photo=True):
     if single_photo == True:
         num_shards = 1
+        image_folder = input_image_folder
     else:
         num_shards = 10 
+        image_folder = database_folder
     Path(output_folder).mkdir(parents=True, exist_ok=True)
     list_ds = list_files(image_folder)
     image_files_to_tfrecords(list_ds, output_folder, num_shards, single_photo)
 
 
-def run_inference(tfrecords_folder, output_folder, batch_size=1000, single_photo=True):
+def run_inference(tfrecords_folder=tf_output, output_folder=embeddings_output, batch_size=1000, single_photo=True):
     Path(output_folder).mkdir(parents=True, exist_ok=True)
     model = EfficientNetB0(weights="imagenet", include_top=False, pooling="avg")
     tfrecords_to_write_embeddings(tfrecords_folder, output_folder, model, batch_size, single_photo)
