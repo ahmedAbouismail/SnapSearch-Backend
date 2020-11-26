@@ -83,22 +83,27 @@ Use cbir_result_dump.sql to get the dump of the Db
 cd /team9/snap_search/Database
 ```
 
-## Test
+## Test the Db
 
-To test and populate the result table you can use post_man
+To test and populate the result table use ->  Postman the Endpoints
 
-To put the Data in the result table change the values of the following variables
+## Endpoints
+make post request to populate-endpoint and pass the following params
+`http://127.0.0.1:5000//populate/<photoId>/<photoName>/<photoUrl>`
+the post request should look like that
+`http://127.0.0.1:5000//populate/1/flower/photo/url`
 
+make get request to query the db and return url of the photo 
+creat json object in the body of the get request in Postman
+the json should look like that(I need just the key of each json object to get url from db)
+the key is same as photoName
 ```bash
-PhotoId = int (The main id of the foto from the CBIR_Algo)
-```
-
-```bash
-PhotoName = string (The of the Photo)
-```
-
-```bash
-PhotoUrl = string (Url to call the Photo from cloud)
+{
+"flower" : { 
+},
+"plume":{
+}
+}
 ```
 
 ## Connection
@@ -116,16 +121,14 @@ mysql_user: 'Ahmed'
 ```
 
 ```bash
-mysql_password: '' Without Password
+mysql_password: '' -> Without Password
 ```
 
 ```bash
 mysql_db: 'cbir_result'
 ```
 
-## Endpoints for Get Requests via post man
 
-`http://127.0.0.1:5000/populate`
 
 ## Contributing
 
