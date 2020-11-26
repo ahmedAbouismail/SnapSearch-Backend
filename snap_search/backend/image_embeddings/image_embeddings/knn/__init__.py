@@ -4,4 +4,5 @@ from image_embeddings.knn.knn import (
     search,
     get_results,
     embeddings_to_numpy,
+    write_to_db
 )
