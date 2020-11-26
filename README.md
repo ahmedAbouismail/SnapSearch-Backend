@@ -29,7 +29,8 @@ Snapserch is a CBIR search app
 1. Open Docker Desktop
 2. Wait until Docker runs
 3. Make sure docker is running in the task bar
-   ![Docker running](dockerSign.png)
+
+- ![Docker running](dockerSign.png)
 
 ## Usage
 
