@@ -10,25 +10,26 @@ Snapserch is a CBIR search app
 
 #### Docker for Windows
 
-- Download Docker Desktop
-  [Downolad Docker Installer .exe](https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe)
+- Download Docker Desktop:
+  [Downolad Docker Installer .exe:](https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe)
 
-- Install Docker Desktop
+- Install Docker Desktop:
   Open the `.exe` file and follow the instructions to install Docker Desktop
   Note: After installation is done, Do NOT reboot
 
-- Download the Linux kernel update package
+- Download the Linux kernel update package:
   [Downolad Linux kernel .msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
 
-- Install Linux kernel update package
+- Install Linux kernel update package:
   Open the `.msi` file and follow the instructions to install Linux kernel
   After installation is done, Reboot your machine
 
-- Run Docker
-  Open Docker Desktop
-  Wait until Docker runs
-  Make sure docker is running in the task bar
-  ![Docker running](dockerSign.png)
+- Run Docker:
+
+1. Open Docker Desktop
+2. Wait until Docker runs
+3. Make sure docker is running in the task bar
+   ![Docker running](dockerSign.png)
 
 ## Usage
 
