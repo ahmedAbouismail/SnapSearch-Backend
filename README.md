@@ -89,13 +89,15 @@ cd \team9\snap_search\backend\Database
 To test and populate the result table use ->  Postman the Endpoints
 
 ## Endpoints
+POST Requests:
 make post request to populate-endpoint and pass the following params
 `http://127.0.0.1:5000//populate/<photoId>/<photoName>/<photoUrl>`
 the post request should look like that
 `http://127.0.0.1:5000//populate/1/flower/photo/url`
-
-make get request to query the db and return url of the photo 
-creat json object in the body of the get request in Postman
+GET Requests:
+make get request to query the db and return url of the photo
+`http://localhost:5000/reults`
+creat json object in the body of the get request in Postman berfor making the request
 the json should look like that
 the key is same as photoName
 ```bash
