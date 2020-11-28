@@ -79,8 +79,9 @@ The Db (cbir_resualt) contains only one table (result)
 
 Use cbir_result_dump.sql to get the dump of the Db
 
+To run the server of the Api go to Database file and run dbApi.py
 ```bash
-cd /team9/snap_search/Database
+cd \team9\snap_search\backend\Database
 ```
 
 ## Test the Db
@@ -95,7 +96,7 @@ the post request should look like that
 
 make get request to query the db and return url of the photo 
 creat json object in the body of the get request in Postman
-the json should look like that(I need just the key of each json object to get url from db)
+the json should look like that
 the key is same as photoName
 ```bash
 {
@@ -110,7 +111,7 @@ the key is same as photoName
 
 ### Db Configuration:
 
-The configurations are saved in db.yaml file
+The configurations are saved in db.yaml file and you can change it in the same file
 
 ```bash
 mysql_host: 'localhost'
