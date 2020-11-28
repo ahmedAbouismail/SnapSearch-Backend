@@ -8,6 +8,8 @@ import random
 import json
 import pyarrow.parquet as pq
 import os
+import requests
+import time
 
 embeddings_output = 'system_files/tf_flower_embeddings'
 
@@ -68,23 +70,25 @@ def get_results(path=embeddings_output, k=10):
     return json.dumps(results, indent=2)  
 
 def write_to_db():
-    [_, name_to_id, _] = read_embeddings('system_files/tf_flower_embeddings')
-    database = {}
     currentDir = os.path.dirname(__file__)
+    [_, name_to_id, _] = read_embeddings(f'{currentDir}/system_files/tf_flower_embeddings')
+    database = {}
 
     name_ = list(name_to_id.keys())
     id_ = list(name_to_id.values())
     
     for id, name in zip(id_,name_):
-        d = {
-            name:{
-                "image_id" : id,
-                "link": os.path.abspath(os.path.join(currentDir,f"../../system_files/tf_flower_images/{str(name)}.jpeg"))
-            }
-        }
-        database.update(d)
+        # url = os.path.abspath(os.path.join(currentDir,f"/system_files/tf_flower_images/{str(name)}.jpeg"))
+        x = requests.post(populate/id/name/"url")
+        # d = {
+        #     name:{
+        #         "image_id" : id,
+        #         "link": os.path.abspath(os.path.join(currentDir,f"../../system_files/tf_flower_images/{str(name)}.jpeg"))
+        #     }
+        # }
+        # database.update(d)
         
-    return  database
+    # return  database
 
 
 
@@ -92,3 +96,5 @@ def write_to_db():
 def search(index, id_to_name, emb, k):
     D, I = index.search(np.expand_dims(emb, 0), k)  # actual search
     return list(zip(D[0], [id_to_name[x] for x in I[0]]))
+
+write_to_db()

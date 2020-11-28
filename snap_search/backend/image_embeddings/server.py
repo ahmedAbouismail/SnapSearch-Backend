@@ -5,9 +5,7 @@ from flask import Flask, request, jsonify
 from PIL import Image 
 import os
 import io
-#for mysql
-from flask_mysqldb import MySQL
-import yaml
+
 
 
 
