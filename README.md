@@ -5,6 +5,7 @@ Snapserch is a CBIR search app
 ## Requirements
 - Python 3.8
 - MySQL Workbench 8.0 CE
+- XAMPP Control Panel v3.2.2
 - Postman
 - Docker
 
@@ -77,32 +78,54 @@ The image-to-search-with should be sent in the body with `form-data`
 
 The Db (cbir_resualt) contains only one table (result)
 
+
 ### Mysql Dump
+- Create Database in Workbench ex:(cbir_resualt) then
+- insert into the db cbir_result_dump.sql to get the table
+- then open XAMPP and run Apache and MySQL Server 
+### Important 
+- if the name of the Db, that you created, isn't (cbir_resualt) then you have to change it in the db.yaml 
+- ![db yaml](yamel.PNG)
 
-Insert into MySql Workbench cbir_result_dump.sql to get the dump of the Db
-then open XAMPP to  run Apache and MySQL Server 
+## API Server:
+### installation:
 
-To run the server of the Api go to Database file and run dbApi.py
 ```bash
-cd \team9\snap_search\backend\Database
+pip install Flask
 ```
+```bash
+pip install flask-mysql
+```
+```bash
+pip install PyYAML
+```
+
+- To run the server of the Api go to Database file 
+```bash
+- cd \team9\snap_search\backend\Database
+```
+- and then run dbAPI.py
+```bash
+python dbAPI.py
+```
+**Make sure that you have python version 3.8.6
 
 ## Test the Db
 
-To test and populate the result table use ->  Postman the Endpoints
+- To test and populate the result table open Postman
 
 ## Endpoints
 ### POST Requests:
-make post request to populate-endpoint and pass the following params
-`http://127.0.0.1:5000//populate/<photoId>/<photoName>/<photoUrl>`
-the post request should look like that
-`http://127.0.0.1:5000//populate/1/flower/photo/url`
+- make post request to populate-endpoint and pass the following params
+- `http://127.0.0.1:5000//populate/<photoId>/<photoName>/<photoUrl>`
+- the post request should look like that
+- `http://127.0.0.1:5000//populate/1/flower/photo/url`
 ### GET Requests:
-make get request to query the db and return url of the photo
-`http://localhost:5000/reults`
-creat json object in the body of the get request in Postman berfor making the request
-the json should look like that
-the key is same as photoName
+- make get request to query the db and return url of the photo
+- `http://localhost:5000/reults`
+- creat json object in the body of the get request in Postman berfor making the request
+- the json should look like that
+- the key is same as photoName
 ```bash
 {
 "flower" : { 
@@ -116,7 +139,7 @@ the key is same as photoName
 
 ### Db Configuration:
 
-The configurations are saved in db.yaml file and you can change it in the same file
+- The configurations are saved in db.yaml file and you can change it in the same file
 
 ```bash
 mysql_host: 'localhost'
@@ -133,9 +156,23 @@ mysql_password: '' -> Without Password
 ```bash
 mysql_db: 'cbir_result'
 ```
-
-
-
+## Potential Errors while testing the Db
+- to avoid that error:
+```bash
+access denied for user 'Ahmed'@'localhost' (using password yes or NO)
+```
+- 1- open PHPMyAdmin
+- ![open PHPMyAdmin](xampp.PNG)
+- 2- go to User accounts on the menu bar at the top
+- 3- then use the configuration data in section Db Configuration to Add user account, if you didn't create it yet 
+- 4- choose Ahmed Useranme from the table and click Edit privileges
+- ![choose user](userAhmed.PNG)
+- 5- click change password
+- ![change password](changePas.PNG)
+- 6- select no password
+- ![no password](NoPass.PNG)
+- 7- dont forget to click Go at the end of the page
+- 8- if you still have the same error try to select (No Password) for the "root" user too 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
