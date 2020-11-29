@@ -124,13 +124,13 @@ python dbAPI.py
 - make get request to query the db and return url of the photo
 - `http://localhost:5000/reults`
 - creat json object in the body of the get request in Postman berfor making the request
-- the json should look like that
-- the key is same as photoName
+- the key must have the same name of the photoName for ex. if the photo callds flower then the the key will be flower too
+- the json object should look like that
 ```bash
 {
 "flower" : { 
 },
-"plume":{
+"Blume":{
 }
 }
 ```
