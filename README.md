@@ -79,7 +79,7 @@ The Db (cbir_resualt) contains only one table (result)
 
 ### Mysql Dump
 
-Use cbir_result_dump.sql to get the dump of the Db
+Insert into MySql Workbench cbir_result_dump.sql to get the dump of the Db
 then open XAMPP to  run Apache and MySQL Server 
 
 To run the server of the Api go to Database file and run dbApi.py
