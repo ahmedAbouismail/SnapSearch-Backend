@@ -5,10 +5,6 @@ from flask import Flask, request, jsonify
 from PIL import Image 
 import os
 import io
-#for mysql
-from flask_mysqldb import MySQL
-import yaml
-
 
 
 
@@ -27,7 +23,7 @@ def process_image(result_num):
         os.makedirs(target)
 
     os.replace(f'{current_dir}/search.jpeg', f'{target}/search.jpeg')
-    write_tfrecord ()
+    write_tfrecord()
     run_inference()
     result = get_results(k=result_num)
     return result
