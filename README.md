@@ -3,7 +3,9 @@
 Snapserch is a CBIR search app
 
 ## Requirements
-
+- Python 3.8
+- MySQL Workbench 8.0 CE
+- Postman
 - Docker
 
 ## Installation
@@ -78,6 +80,7 @@ The Db (cbir_resualt) contains only one table (result)
 ### Mysql Dump
 
 Use cbir_result_dump.sql to get the dump of the Db
+then open XAMPP to  run Apache and MySQL Server 
 
 To run the server of the Api go to Database file and run dbApi.py
 ```bash
