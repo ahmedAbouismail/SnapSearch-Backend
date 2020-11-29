@@ -16,61 +16,61 @@ namespace Snapsearch.ViewModels
                 new ImageViewModel()
                 {
                     ImageName = "Image 1",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 2",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 3",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 4",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 5",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 6",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 7",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 8",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 9",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 10",
-                    ImageUrl = "",
+                    ImageUrl = "snapsearch_homepageimage",
                     MatchPercentage = 0
                 },
             };

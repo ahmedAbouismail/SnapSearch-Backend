@@ -3,7 +3,12 @@
     x:Class="Snapsearch.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:Snapsearch.ViewModels;assembly=Snapsearch"
     NavigationPage.HasNavigationBar="false">
+    <!--  Page uses MainViewModel as a Viewmodel  -->
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel />
+    </ContentPage.BindingContext>
     <!--  Resources for the page  -->
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -47,14 +52,13 @@
             Text="or pick a picture from your gallery" />
         <!--  Snapsearch "Start Searching" button  -->
         <ImageButton
-            Margin="130,100,0,0"
+            x:Name="StartSearchingButton"
             Clicked="StartSearchingButton_OnClicked"
+            HorizontalOptions="End"
             Source="snapsearch_button_startsearching"
             Style="{StaticResource ButtonStyle}" />
-        <Button
-            Margin="0,10,0,0"
-            Clicked="PH_ResultsPageButton_OnClicked"
-            Text="PH: ResultsPage" />
+        <Button Clicked="PH_ResultsPageButton_OnClicked" Text="PH: ResultsPage" />
+        
     </StackLayout>
 
 </ContentPage>

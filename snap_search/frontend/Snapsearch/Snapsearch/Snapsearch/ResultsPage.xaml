@@ -26,7 +26,11 @@
                 <Label Text="We found 10 images" />
             </StackLayout>
 
-            <ScrollView AbsoluteLayout.LayoutBounds="20, 220, 380, 400" BackgroundColor="White">
+
+            <ScrollView
+                x:Name="ScrollView"
+                AbsoluteLayout.LayoutBounds="20, 220, 350, 400"
+                BackgroundColor="Transparent">
                 <FlexLayout
                     BindableLayout.ItemsSource="{Binding Images}"
                     Direction="Row"
@@ -38,25 +42,27 @@
                         <DataTemplate>
                             <pancakeView:PancakeView
                                 Margin="10"
-                                BackgroundColor="CadetBlue"
+                                BackgroundColor="White"
                                 CornerRadius="10"
                                 HeightRequest="160"
                                 VerticalOptions="Center"
                                 WidthRequest="160">
                                 <Grid>
-                                    <BoxView
-                                        HeightRequest="30"
-                                        HorizontalOptions="End"
-                                        Opacity=".5"
-                                        VerticalOptions="Start"
-                                        WidthRequest="30"
-                                        Color="White" />
+                                    <Image
+                                        x:Name="ProductImage"
+                                        HorizontalOptions="Center"
+                                        InputTransparent="True"
+                                        Source="{Binding ImageUrl}"
+                                        VerticalOptions="Start" />
                                     <StackLayout>
+
                                         <Label
                                             Margin="20,120"
                                             FontSize="10"
                                             Text="{Binding ImageName}" />
+
                                     </StackLayout>
+
                                 </Grid>
                             </pancakeView:PancakeView>
                         </DataTemplate>
