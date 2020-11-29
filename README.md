@@ -80,7 +80,7 @@ The Db (cbir_resualt) contains only one table (result)
 
 
 ### Mysql Dump
-- Create Database in Workbench ex:(cbir_resualt) then
+- Create Database in Workbench with name for ex:(cbir_resualt) or any other name then
 - insert into the db cbir_result_dump.sql to get the table
 - then open XAMPP and run Apache and MySQL Server 
 ### Important 
