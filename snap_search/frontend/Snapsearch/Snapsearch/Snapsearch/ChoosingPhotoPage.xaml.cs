@@ -8,6 +8,7 @@ using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace Snapsearch
 {
@@ -21,6 +22,7 @@ namespace Snapsearch
             
         }
 
+        private MediaElement _mediaElement;
         /// <summary>
         /// Event Handler for choosing a photo
         /// </summary>
@@ -46,7 +48,7 @@ namespace Snapsearch
             if (_mediaFile == null)
                 return;
             //set text to path of the media file 
-            LocalPathLabel.Text = _mediaFile.Path;
+    
 
             //get preview of picked image 
             FileImage.Source = ImageSource.FromStream(() => _mediaFile.GetStream());
@@ -58,11 +60,9 @@ namespace Snapsearch
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
-
-
         private async void UploadPhoto_Clicked(object sender, EventArgs e)
         {
+            
             var content = new MultipartFormDataContent();
 
             content.Add(new StreamContent(_mediaFile.GetStream()),
@@ -75,7 +75,7 @@ namespace Snapsearch
 
             var httpResponsMessage = await httpClient.PostAsync(uploadServiceBaseAddress, content);
 
-            RemotePathLabel.Text = await httpResponsMessage.Content.ReadAsStringAsync();
+        
 
         }
 
