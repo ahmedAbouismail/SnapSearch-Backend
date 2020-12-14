@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Net.Mime;
 using System.Text;
 using MvvmHelpers;
-using Xamarin.Forms;
 
 namespace Snapsearch.ViewModels
 {
@@ -20,7 +17,8 @@ namespace Snapsearch.ViewModels
 
         // Does the API also send match percentages for images??!
         public decimal MatchPercentage { get; set; }
-        
+
         //todo - extend with additional properties later
     }
+
 }

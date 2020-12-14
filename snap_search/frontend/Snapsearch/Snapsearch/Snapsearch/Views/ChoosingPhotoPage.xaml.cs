@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Snapsearch
+namespace Snapsearch.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HistoryPage : ContentPage
+    public partial class ChoosingPhotoPage : ContentPage
     {
-        public HistoryPage()
+        public ChoosingPhotoPage()
         {
             InitializeComponent();
         }
+
     }
 }

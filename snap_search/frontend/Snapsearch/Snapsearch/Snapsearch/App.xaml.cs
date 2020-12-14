@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Snapsearch.Services;
+using Snapsearch.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -6,13 +8,13 @@ namespace Snapsearch
 {
     public partial class App : Application
     {
+
         public App()
         {
-            //setting for applying xamarin.shapes => it's not fully implemented yet.
-            Device.SetFlags(new[] { "Shapes_Experimental", "Brush_Experimental" });
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            DependencyService.Register<MockDataStore>();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()

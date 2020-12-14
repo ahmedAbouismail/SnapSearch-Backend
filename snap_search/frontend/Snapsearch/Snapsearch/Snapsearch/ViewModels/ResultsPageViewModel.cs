@@ -5,11 +5,11 @@ using MvvmHelpers;
 
 namespace Snapsearch.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public class ResultsPageViewModel : BaseViewModel
     {
         public IList<ImageViewModel> Images { get; set; }
 
-        public MainViewModel()
+        public ResultsPageViewModel()
         {
             Images = new ObservableRangeCollection<ImageViewModel>()
             {
@@ -76,5 +76,6 @@ namespace Snapsearch.ViewModels
             };
 
         }
+
     }
 }

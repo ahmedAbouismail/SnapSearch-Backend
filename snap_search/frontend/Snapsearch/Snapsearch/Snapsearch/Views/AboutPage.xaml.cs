@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Snapsearch
+namespace Snapsearch.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LicensePage : ContentPage
+    public partial class AboutPage : ContentPage
     {
-        public LicensePage()
+        public AboutPage()
         {
             InitializeComponent();
         }

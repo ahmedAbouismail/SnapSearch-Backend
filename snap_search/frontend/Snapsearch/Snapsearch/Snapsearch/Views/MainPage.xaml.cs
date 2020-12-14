@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Snapsearch
+namespace Snapsearch.Views
 {
     public partial class MainPage : ContentPage
     {
@@ -17,12 +14,13 @@ namespace Snapsearch
 
         private async void StartSearchingButton_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NavigationPage(new ChoosingPhotoPage()));
+            await Navigation.PushAsync(new ChoosingPhotoPage());
         }
 
         private async void PH_ResultsPageButton_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NavigationPage(new ResultsPage()));
+            await Navigation.PushAsync(new ResultsPage());
         }
+
     }
 }

@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="Snapsearch.ChoosingPhotoPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    NavigationPage.HasNavigationBar="false">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Snapsearch.Views.ChoosingPhotoPage">
     <ContentPage.Content>
         <Grid
             BackgroundColor="Transparent"
@@ -26,7 +24,7 @@
                     Grid.Column="1"
                     Margin="10"
                     BackgroundColor="Transparent"
-                    Clicked="ChoosePhoto_Clicked"
+                    
                     Source="snapsearch_button_gallery.png" />
                 <ImageButton
                     x:Name="TakePhoto"
@@ -34,7 +32,7 @@
                     Grid.Column="2"
                     Margin="10"
                     BackgroundColor="Transparent"
-                    Clicked="TakePhoto_OnClicked_"
+                    
                     Source="snapsearch_button_camera" />
             </Grid>
             <!--<Button

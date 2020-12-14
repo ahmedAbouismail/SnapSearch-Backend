@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Snapsearch.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Snapsearch.ViewModels"
+    Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">Orange</Color>
+            <Color x:Key="ButtonBackgroundColor">Transparent</Color>
+            <!--  Style for ImageButtons  -->
+            <Style x:Key="ButtonStyle" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <!--  Text before the logo  -->
+        <Label
+            Padding="0,10,0,0"
+            FontSize="16"
+            HorizontalOptions="Center"
+            Text="Welcome to" />
+        <!--  Snapsearch logo with text  -->
+        <Image
+            HorizontalOptions="Center"
+            Source="snapsearch_logo"
+            WidthRequest="{OnPlatform iOS=300,
+                                      Android=250}" />
+        <!--  Snapsearch image on the home page  -->
+        <Image
+            Margin="0,50,0,0"
+            HorizontalOptions="Center"
+            Source="snapsearch_homepageimage"
+            WidthRequest="{OnPlatform iOS=300,
+                                      Android=250}" />
+        <!--  Text block telling the user how to use the app  -->
+        <Label
+            Padding="0,10,0,0"
+            FontSize="14"
+            HorizontalOptions="Center"
+            Text="Start by taking a picture with your camera" />
+        <Label
+            FontSize="14"
+            HorizontalOptions="Center"
+            Text="or pick a picture from your gallery" />
+        <!--  Snapsearch "Start Searching" button  -->
+        <ImageButton
+            x:Name="StartSearchingButton"
+            Clicked="StartSearchingButton_OnClicked"
+            HorizontalOptions="End"
+            Source="snapsearch_button_startsearching"
+            Style="{StaticResource ButtonStyle}" />
+        <Button Clicked="PH_ResultsPageButton_OnClicked" Text="PH: ResultsPage" />
+
+    </StackLayout>
+
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout
+            BackgroundColor="{StaticResource Accent}"
+            HorizontalOptions="Fill"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image
+                        HeightRequest="64"
+                        Source="snapsearch_homepageimage.png"
+                        VerticalOptions="Center" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout
+                Padding="30,24,30,24"
+                Orientation="Vertical"
+                Spacing="10">
+                <Label FontSize="Title" Text="Start developing now" />
+                <Label
+                    Padding="0,0,0,0"
+                    FontSize="16"
+                    Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" />
+                <Label Padding="0,24,0,0" FontSize="16">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Learn more at " />
+                                <Span FontAttributes="Bold" Text="https://aka.ms/xamarin-quickstart" />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button
+                    Margin="0,10,0,0"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding OpenWebCommand}"
+                    Text="Learn more"
+                    TextColor="White" />
+            </StackLayout>
+        </ScrollView>
+    </Grid>-->
+
+</ContentPage>
