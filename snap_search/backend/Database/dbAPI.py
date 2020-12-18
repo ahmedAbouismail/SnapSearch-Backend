@@ -8,8 +8,9 @@ from db import *
 app = Flask(__name__)
 
 
-#open the connection to the MySql
+
 mysql = connectMySQLServer(app)
+#cur = openCursor(mysql) 
 
 
 @app.route("/populate/<int:photoId>/<string:photoName>/<path:photoUrl>", methods=["GET", "POST"])
@@ -31,7 +32,8 @@ def populate_db(photoId,photoName,photoUrl):
         msg = ""
         try:
             #create curser to accese the db
-            cur = openCursor(mysql)        
+            #cur = openCursor(mysql)
+            cur = mysql.connection.cursor()        
             if areParamsCorrect(photoId, photoName,photoUrl):
                 isInserted = insertInDb(photoId, photoName, photoUrl, cur)
                 if isInserted != None:

@@ -1,8 +1,16 @@
-import yaml
+import yaml 
 from flask_mysqldb import MySQL
 from flask import Flask, request
 
-  
+#open and load db.yaml in db
+db = yaml.load(open("db.yaml"))
+
+app.config['MYSQL_HOST'] = db['mysql_host']
+app.config['MYSQL_USER'] = db['mysql_user']
+app.config['MYSQL_PASSWORD'] = db['mysql_password']
+app.config['MYSQL_DB'] = db['mysql_db']
+
+
 def configureDbServer(app):
     """
     to set the config for the app and return back the configuierd app
@@ -10,8 +18,7 @@ def configureDbServer(app):
     params:
     app : the current app
     """
-    #open and load db.yaml in db
-    db = yaml.load(open("db.yaml"))
+    
     #db["key"] to get the value
     app.config['MYSQL_HOST'] = db['mysql_host']
     app.config['MYSQL_USER'] = db['mysql_user']
@@ -28,12 +35,16 @@ def connectMySQLServer(app):
     params:
     app : the current app
     """
-    db = configureDbServer(app)
-    mysql = MySQL(db)
-    if  mysql != None:
-        return mysql
-    else:
-        print("Bound to MySQL was unsuccessful") 
+    try:
+        db = configureDbServer(app)
+        mysql = MySQL(db)
+        if  mysql != None:
+            return mysql
+        else:
+            print("Bound to MySQL was unsuccessful")
+    except Exception  as e:
+        print(e)
+     
 
 def openCursor(mysql):
     """
@@ -46,7 +57,9 @@ def openCursor(mysql):
     cur new Cursor each time we call the func for the same db     
     """
     cur = mysql.connection.cursor()
+    print(cur)
     if cur != None:
+        print(cur)
         return cur
     else:
         return "Error while opening new cursor"
