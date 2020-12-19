@@ -2,12 +2,12 @@ stages:
   - build
   - test
 
-build-code-job:
+build-code:
   stage: build
-  script:
+  
       
 
-test-code-job1:
+test-code:
   stage: test
-  script:
+  
     
