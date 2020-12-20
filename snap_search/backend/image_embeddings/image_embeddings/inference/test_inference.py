@@ -13,18 +13,19 @@ import os
 """
 ***important:
 
-    1- make sure that you changed the paths to the paths where the files are saved on ur computer
-    2- run the test twice to get the right result
-        a- the first time to create the tf_output file and write the data
-        b- the seconde time to read the data from tf_output and write it in the embeddings_output
+    1- make sure that you changed the paths to the paths where the files are saved on ur computer.
+    2- run the test twice to get the right result.
+        a- the first time to create the tf_output file and write the data.
+        b- the seconde time to read the data from tf_output and write it in the embeddings_output.
 """
-tf_output = "backend/image_embeddings/system_files/tf_flower_tf_records"
-embeddings_output = "backend/image_embeddings/system_files/tf_flower_embeddings"
-database_folder = "backend/image_embeddings/system_files/tf_flower_images"
+currentDir = os.path.dirname(__file__)
+tf_output = os.path.abspath(os.path.join(currentDir, "../../system_files/tf_flower_tf_records"))
+embeddings_output = os.path.abspath(os.path.join(currentDir, "../../system_files/tf_flower_embeddings"))
+database_folder = os.path.abspath(os.path.join(currentDir, "../../system_files/tf_flower_images"))
 
 
 
-class TeastInference(unittest.TestCase):
+class Test_Inference(unittest.TestCase):
     # @classmethod
     
     def test_run_inference(self):
