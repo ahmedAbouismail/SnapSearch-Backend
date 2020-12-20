@@ -1,0 +1,13 @@
+stages:
+  - build
+  - test
+
+build-code:
+  stage: build
+  
+      
+
+test-code:
+  stage: test
+  
+    
