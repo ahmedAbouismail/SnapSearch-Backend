@@ -9,7 +9,8 @@ import json
 import pyarrow.parquet as pq
 import os
 
-embeddings_output = 'system_files/tf_flower_embeddings'
+currentDir = os.path.dirname(__file__)
+embeddings_output = os.path.abspath(os.path.join(currentDir,"../../system_files/tf_flower_embeddings"))
 
 def read_embeddings(path):
     emb = pq.read_table(path).to_pandas()
