@@ -1,11 +1,8 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Xamarin.Forms.Platform.Android;
 
 namespace Snapsearch.Droid
 {
@@ -17,12 +14,21 @@ namespace Snapsearch.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(savedInstanceState);
+            this.SetStatusBarColor(Xamarin.Forms.Color.Orange.ToAndroid());
 
+            base.OnCreate(savedInstanceState);
+            //Xamarin.Essentials nuget package
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
+
+        /// <summary>
+        /// Xamarin.Essentials Nuget Package Permission Requests
+        /// </summary>
+        /// <param name="requestCode"></param>
+        /// <param name="permissions"></param>
+        /// <param name="grantResults"></param>
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

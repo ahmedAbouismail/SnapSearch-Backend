@@ -8,7 +8,7 @@
             ColumnDefinitions="*, 50, 50, *"
             RowDefinitions="*,AUTO">
             <Image
-                x:Name="FileImage"
+                x:Name="PickedImage"
                 Grid.Row="0"
                 Grid.ColumnSpan="4" />
             <Grid
@@ -24,7 +24,8 @@
                     Grid.Column="1"
                     Margin="10"
                     BackgroundColor="Transparent"
-                    
+                    Clicked="ImageButton_OnClicked"
+
                     Source="snapsearch_button_gallery.png" />
                 <ImageButton
                     x:Name="TakePhoto"
@@ -32,7 +33,7 @@
                     Grid.Column="2"
                     Margin="10"
                     BackgroundColor="Transparent"
-                    
+                    Clicked="TakePhoto_OnClicked"
                     Source="snapsearch_button_camera" />
             </Grid>
             <!--<Button
