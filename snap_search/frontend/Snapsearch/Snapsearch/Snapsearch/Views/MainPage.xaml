@@ -25,21 +25,18 @@
     <StackLayout>
         <!--  Text before the logo  -->
         <Label
-            Padding="0,10,0,0"
+            Margin="0,70,0,0"
             FontSize="16"
             HorizontalOptions="Center"
             Text="Welcome to" />
         <!--  Snapsearch logo with text  -->
-        <Image
-            HorizontalOptions="Center"
-            Source="snapsearch_logo"
-            WidthRequest="{OnPlatform iOS=300,
-                                      Android=250}" />
+        <Image HorizontalOptions="Center" Source="snapsearch_logo" />
         <!--  Snapsearch image on the home page  -->
         <Image
-            Margin="0,50,0,0"
+            Margin="0,20,0,0"
             HorizontalOptions="Center"
             Source="snapsearch_homepageimage"
+            VerticalOptions="Center"
             WidthRequest="{OnPlatform iOS=300,
                                       Android=250}" />
         <!--  Text block telling the user how to use the app  -->
@@ -53,13 +50,21 @@
             HorizontalOptions="Center"
             Text="or pick a picture from your gallery" />
         <!--  Snapsearch "Start Searching" button  -->
-        <ImageButton
-            x:Name="StartSearchingButton"
-            Clicked="StartSearchingButton_OnClicked"
-            HorizontalOptions="End"
-            Source="snapsearch_button_startsearching"
-            Style="{StaticResource ButtonStyle}" />
-        <Button Clicked="PH_ResultsPageButton_OnClicked" Text="PH: ResultsPage" />
+        <Grid Margin="0,50,40,0" ColumnDefinitions="*,*">
+
+
+            <ImageButton
+                x:Name="StartSearchingButton"
+                Grid.Column="1"
+                Clicked="StartSearchingButton_OnClicked"
+                HorizontalOptions="End"
+                Source="snapsearch_button_startsearching"
+                Style="{StaticResource ButtonStyle}" />
+
+        </Grid>
+
+
+
 
     </StackLayout>
 

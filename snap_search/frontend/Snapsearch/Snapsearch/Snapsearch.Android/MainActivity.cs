@@ -14,7 +14,7 @@ namespace Snapsearch.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            this.SetStatusBarColor(Xamarin.Forms.Color.Orange.ToAndroid());
+            this.SetStatusBarColor(Xamarin.Forms.Color.Black.ToAndroid());
 
             base.OnCreate(savedInstanceState);
             //Xamarin.Essentials nuget package
