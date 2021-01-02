@@ -145,6 +145,10 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\snapsearch_homepageimage.png" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\network_security_config.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

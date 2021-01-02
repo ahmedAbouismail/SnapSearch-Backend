@@ -34,7 +34,7 @@ namespace Snapsearch.Views
                
                 var httpClient = new HttpClient(); // Http
 
-                var response = await httpClient.PostAsync("http://127.0.0.1:5000/uploadimage/10", content); //Http
+                var response = await httpClient.PostAsync("http://192.168.1.24:5000/uploadimage/10", content); //Http
 
                 Console.WriteLine(response.StatusCode.ToString()); // attach to text or label 
                 
@@ -75,7 +75,7 @@ namespace Snapsearch.Views
 
                 var httpClient = new HttpClient(); // Http
 
-                var response = await httpClient.PostAsync("http://127.0.0.1:5000/uploadimage/10", content); //Http
+                var response = await httpClient.PostAsync("http://192.168.1.24:5000/uploadimage/10", content); //Http
 
                 Console.WriteLine(response.StatusCode.ToString()); // attach to text or label 
 
