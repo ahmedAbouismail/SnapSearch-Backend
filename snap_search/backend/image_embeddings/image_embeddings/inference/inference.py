@@ -5,11 +5,18 @@ from efficientnet.tfkeras import EfficientNetB0
 import pyarrow.parquet as pq
 import pyarrow as pa
 from pathlib import Path
+import os
 
-database_folder = 'system_files/tf_flower_images'
-input_image_folder = 'system_files/tf_input_image'
-tf_output = 'system_files/tf_flower_tf_records'
-embeddings_output = 'system_files/tf_flower_embeddings'
+
+
+currentDir = os.path.dirname(__file__)
+tf_output = os.path.abspath(os.path.join(currentDir, "../../system_files/tf_flower_tf_records"))
+embeddings_output = os.path.abspath(os.path.join(currentDir, "../../system_files/tf_flower_embeddings"))
+database_folder = os.path.abspath(os.path.join(currentDir, "../../system_files/tf_flower_images"))
+# database_folder = 'backend/image_embeddings/system_files/tf_flower_images'
+# input_image_folder = 'system_files/tf_input_image'
+# tf_output = 'system_files/tf_flower_tf_records'
+# embeddings_output = 'system_files/tf_flower_embeddings'
 
 def _int64_feature(value):
     """Returns an int64_list from a bool / enum / int / uint."""
