@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MvvmHelpers;
+using Snapsearch.Views;
 
 namespace Snapsearch.ViewModels
 {

@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+ 
 <Application
     x:Class="Snapsearch.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -8,8 +9,10 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <!--Primary color of the app UI. For Snapsearch it is orange. -->
+            <Color x:Key="Primary">#ffa500</Color>
             <Style TargetType="Button">
+                <!--Primary text color of the app UI. For Snapsearch it is white. -->
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>

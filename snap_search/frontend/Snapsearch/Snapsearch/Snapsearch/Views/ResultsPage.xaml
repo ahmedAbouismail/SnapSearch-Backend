@@ -1,74 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:viewModels="clr-namespace:Snapsearch.ViewModels;assembly=Snapsearch"
-             x:Class="Snapsearch.Views.ResultsPage">
-    
-        <!--  todo - fix layout properties  -->
-
-        <!--  Implement MainViewModel in the page  -->
-        <ContentPage.BindingContext>
-            <viewModels:ResultsPageViewModel />
-        </ContentPage.BindingContext>
-
-        <ContentPage.Content>
-            <AbsoluteLayout>
-                <!--  Elements that are not results  -->
-                <StackLayout AbsoluteLayout.LayoutBounds="100,0">
-                    <!--  Logo image  -->
-                    <ImageButton BackgroundColor="Transparent" Source="snapsearch_logo" />
-                    <!--  The image that was searched  -->
-                    <Image Source="snapsearch_image_generic" />
-                    <!--  Text for informing the user with the amount of search results  -->
-                    <Label Text="We found 10 images" />
-                </StackLayout>
-
-
-                <ScrollView
-                x:Name="ScrollView"
+<ContentPage
+    x:Class="Snapsearch.Views.ResultsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:viewModels="clr-namespace:Snapsearch.ViewModels;assembly=Snapsearch">
+    <!--  todo - fix layout properties  -->
+    <!--  Implement MainViewModel in the page  -->
+    <ContentPage.BindingContext>
+        <viewModels:ResultsPageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!--  Elements that are not results  -->
+            <!--  Logo image  -->
+            <ImageButton
+                x:Name="LogoImage"
+                AbsoluteLayout.LayoutBounds="10,10"
+                BackgroundColor="Transparent"
+                Source="snapsearch_logo" />
+            <!--  The image that was searched  -->
+            <Image x:Name="GenericImage" Source="snapsearch_image_generic" />
+            <!--  Text for informing the user with the amount of search results  -->
+            <Label x:Name="TextLabel" Text="We found 10 images" />
+            <ScrollView
+                x:Name="ScrollContainer"
                 AbsoluteLayout.LayoutBounds="20, 220, 350, 400"
                 BackgroundColor="Transparent">
+                <Grid>
+                    <Frame x:Name="BottomGradient">
+                        <Frame.Background>
+                            <!--  StartPoint defaults to (0,0)  -->
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Offset="0.1" Color="Transparent" />
+                                <GradientStop Offset="1.0" Color="Gray" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
                     <FlexLayout
-                    BindableLayout.ItemsSource="{Binding Images}"
-                    Direction="Row"
-                    HeightRequest="1000"
-                    JustifyContent="SpaceAround"
-                    WidthRequest="500"
-                    Wrap="Wrap">
+                        BindableLayout.ItemsSource="{Binding Images}"
+                        Direction="Row"
+                        HeightRequest="1180"
+                        JustifyContent="SpaceAround"
+                        WidthRequest="500"
+                        Wrap="Wrap">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <pancakeView:PancakeView
-                                Margin="10"
-                                BackgroundColor="White"
-                                CornerRadius="10"
-                                HeightRequest="160"
-                                VerticalOptions="Center"
-                                WidthRequest="160">
+                                    Margin="10"
+                                    BackgroundColor="White"
+                                    CornerRadius="10"
+                                    HeightRequest="160"
+                                    VerticalOptions="Center"
+                                    WidthRequest="160">
                                     <Grid>
                                         <Image
-                                        x:Name="ProductImage"
-                                        HorizontalOptions="Center"
-                                        InputTransparent="True"
-                                        Source="{Binding ImageUrl}"
-                                        VerticalOptions="Start" />
+                                            x:Name="ProductImage"
+                                            HorizontalOptions="Center"
+                                            InputTransparent="True"
+                                            Source="{Binding ImageUrl}"
+                                            VerticalOptions="Start" />
                                         <StackLayout>
-
                                             <Label
-                                            Margin="20,120"
-                                            FontSize="10"
-                                            Text="{Binding ImageName}" />
-
+                                                Margin="20,120"
+                                                FontSize="10"
+                                                Text="{Binding ImageName}" />
                                         </StackLayout>
-
                                     </Grid>
                                 </pancakeView:PancakeView>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
-                </ScrollView>
-            </AbsoluteLayout>
-        </ContentPage.Content>
+                </Grid>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
 </ContentPage>
 
 
