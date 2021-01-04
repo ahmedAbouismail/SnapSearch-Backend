@@ -3,6 +3,7 @@ using Snapsearch.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net.Http;
 
 namespace Snapsearch
 {

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Mime;
 using System.Text;
 using MvvmHelpers;
 using Snapsearch.Views;
+using Xamarin.Forms;
 
 namespace Snapsearch.ViewModels
 {
@@ -15,6 +18,8 @@ namespace Snapsearch.ViewModels
         // List of links to the images - results (urls)
         public static List<string> CbirLinksList = new List<string>();
 
+       // public static Image ResultImage = new Image();
+
         public ResultsPageViewModel()
         {
 
@@ -26,61 +31,61 @@ namespace Snapsearch.ViewModels
                 new ImageViewModel()
                 {
                     ImageName = "Image 1",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[0],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 2",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[1],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 3",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[2],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 4",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[3],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 5",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[4],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 6",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[5],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 7",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[6],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 8",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[7],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 9",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[8],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 10",
-                    ImageUrl = "snapsearch_homepageimage",
+                    ImageUrl = CbirLinksList[9],
                     MatchPercentage = 0
                 },
             };

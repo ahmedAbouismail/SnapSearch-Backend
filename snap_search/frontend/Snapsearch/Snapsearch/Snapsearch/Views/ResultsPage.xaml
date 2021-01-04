@@ -20,7 +20,7 @@
                 BackgroundColor="Transparent"
                 Source="snapsearch_logo" />
             <!--  The image that was searched  -->
-            <Image x:Name="GenericImage" Source="snapsearch_image_generic" />
+            <Image x:Name="GenericImage" Source="" />
             <!--  Text for informing the user with the amount of search results  -->
             <Label x:Name="TextLabel" Text="We found 10 images" />
             <ScrollView

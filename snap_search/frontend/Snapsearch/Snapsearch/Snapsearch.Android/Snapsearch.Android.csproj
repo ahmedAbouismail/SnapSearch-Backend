@@ -36,6 +36,7 @@
     <MandroidI18n />
     <AndroidLinkSkip>
     </AndroidLinkSkip>
+    <AndroidTlsProvider>btls</AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
