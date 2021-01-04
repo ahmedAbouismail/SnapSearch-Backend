@@ -81,10 +81,11 @@ The image-to-search-with should be sent in the body with `form-data`
 ```bash
 pyhton test_inference.py
 ```
--to get the right result you have to run the test twice
--a- the first run to create the tf_output file and write the data.
--b- the seconde run to read the data from tf_output and write it in the embeddings_output.
-
+-to get the right result you have to run the test twice.
+```bash
+a-the first run to create the tf_output file and write the data.
+b- the seconde run to read the data from tf_output and write it in the embeddings_output.
+```
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
