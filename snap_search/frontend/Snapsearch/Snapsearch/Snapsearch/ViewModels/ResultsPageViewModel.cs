@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using MvvmHelpers;
+using Snapsearch.Views;
 
 namespace Snapsearch.ViewModels
 {
     public class ResultsPageViewModel : BaseViewModel
     {
         public IList<ImageViewModel> Images { get; set; }
+        
 
         public ResultsPageViewModel()
         {
+            
             Images = new ObservableRangeCollection<ImageViewModel>()
             {
                 new ImageViewModel()
