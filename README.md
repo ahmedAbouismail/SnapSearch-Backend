@@ -74,6 +74,16 @@ docker run -p 5000:5000 image
 Use the endpoint above to send a `post` request.
 The image-to-search-with should be sent in the body with `form-data`
 
+# Sprint 2
+## Unittest for inference.py
+
+-to run the Unittest of the inference.py write in the terminal
+```bash
+pyhton test_inference.py
+```
+-to get the right result you have to run the test twice
+-a- the first run to create the tf_output file and write the data.
+-b- the seconde run to read the data from tf_output and write it in the embeddings_output.
 
 ## Contributing
 
