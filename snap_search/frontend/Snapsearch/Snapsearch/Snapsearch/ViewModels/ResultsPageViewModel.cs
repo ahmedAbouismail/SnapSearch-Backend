@@ -10,12 +10,19 @@ namespace Snapsearch.ViewModels
     {
         public IList<ImageViewModel> Images { get; set; }
         
+        public IList<string> Stringendings { get; set; }
+
+        // List of links to the images - results (urls)
+        public static List<string> CbirLinksList = new List<string>();
 
         public ResultsPageViewModel()
         {
-            
+
+
             Images = new ObservableRangeCollection<ImageViewModel>()
             {
+
+               
                 new ImageViewModel()
                 {
                     ImageName = "Image 1",

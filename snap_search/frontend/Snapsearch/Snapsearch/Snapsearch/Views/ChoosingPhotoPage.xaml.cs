@@ -2,6 +2,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using Snapsearch.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,6 +25,7 @@ namespace Snapsearch.Views
         private async void TakePhoto_OnClicked(object sender, EventArgs e)
         {
             //todo - ask "does phone have a camera?" !Important!
+            //todo - check connectivity
             // wait result of captured photo
             var result = await MediaPicker.CapturePhotoAsync();
 
@@ -47,9 +49,10 @@ namespace Snapsearch.Views
 
                 // Post request with captured photo
                 // important: the url to the api is the IP-Adress of your computer and not localhost !
-                var response = await httpClient.PostAsync("http://192.168.1.24:5000/uploadimage/10", content); //Http
+                var response = await httpClient.PostAsync("http://192.168.1.24:5000/uploadimage/10", content); 
 
-                // get StatusCode of server. 200 - Ok!
+
+                // write to dev StatusCode of server. 200 - Ok!
                 Console.WriteLine(response.StatusCode.ToString());
 
                 // if status code is OK...
@@ -63,6 +66,13 @@ namespace Snapsearch.Views
 
                     // deserialize Json string
                     var cbirResult = CbirResult.FromJson(jsonString);
+
+                    // for each key, value pair of cbirResult...
+                    foreach (var kvpCbir in cbirResult.Values)
+                    {
+                        // add its "link" value to CbirLinksList in the Results Page View Model
+                        ResultsPageViewModel.CbirLinksList.Add(kvpCbir.Link);
+                    }
                 }
 
             }
@@ -75,6 +85,7 @@ namespace Snapsearch.Views
         /// <param name="e"></param>
         private async void ImageButton_OnClicked(object sender, EventArgs e)
         {
+            //todo - check connectivity
 
             // Open Gallery
             var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
@@ -104,7 +115,7 @@ namespace Snapsearch.Views
 
                 // send post request to api
                 // important: the url to the api is the IP-Adress of your computer and not localhost !
-                var response = await httpClient.PostAsync("http://192.168.1.24:5000/uploadimage/10", content); //Http
+                var response = await httpClient.PostAsync("http://192.168.1.24:5000/uploadimage/10", content); 
 
                 // write status code to console (for dev)
                 Console.WriteLine(response.StatusCode.ToString());
@@ -121,14 +132,20 @@ namespace Snapsearch.Views
                     // deserialize Json string
                     var cbirResult = CbirResult.FromJson(jsonString);
 
-
+                    // for each key, value pair of cbirResult...
+                    foreach (var kvpCbir in cbirResult.Values)
+                    {
+                        // add its "link" value to CbirLinksList in the Results Page View Model
+                        ResultsPageViewModel.CbirLinksList.Add(kvpCbir.Link);
+                    };
                 }
             }
         }
 
-
+        // When Use Photo Button is clicked...
         private async void UsePhoto_OnClicked(object sender, EventArgs e)
         {
+            // switch to next Results Page
             await Navigation.PushAsync(new ResultsPage());
         }
     }

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Snapsearch.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Snapsearch.Views
@@ -10,7 +11,8 @@ namespace Snapsearch.Views
         {
             InitializeComponent();
 
-
+            //todo - use this binding context for image urls.
+            //BindingContext = ResultsPageViewModel.CbirLinksList;
 
         }
 
