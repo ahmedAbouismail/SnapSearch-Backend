@@ -1,7 +1,12 @@
-﻿using Snapsearch.Services;
+﻿using RestSharp;
+using Snapsearch.Services;
+using Snapsearch.ViewModels;
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,6 +19,8 @@ namespace Snapsearch.Views
         public ChoosingPhotoPage()
         {
             InitializeComponent();
+
+
         }
 
         /// <summary>
@@ -24,6 +31,7 @@ namespace Snapsearch.Views
         private async void TakePhoto_OnClicked(object sender, EventArgs e)
         {
             //todo - ask "does phone have a camera?" !Important!
+            //todo - check connectivity
             // wait result of captured photo
             var result = await MediaPicker.CapturePhotoAsync();
 
@@ -39,31 +47,73 @@ namespace Snapsearch.Views
                 // Show image on screen
                 PickedImage.Source = ImageSource.FromStream(() => stream);
 
+                //   ResultsPageViewModel.ResultImage.Source = ImageSource.FromStream(() => stream);
+                
                 // Create Image (add data to the multiformdatacontent..)
                 content.Add(new StreamContent(await result.OpenReadAsync()), "input_img", result.FileName);
 
+                
+
                 // create new HttpClient
-                var httpClient = new HttpClient(); // Http
+                var httpClient = new HttpClient(); 
+                
 
                 // Post request with captured photo
-                // important: the url to the api is the IP-Adress of your computer and not localhost !
-                var response = await httpClient.PostAsync("http://192.168.1.24:5000/uploadimage/10", content); //Http
+                var response = await httpClient.PostAsync("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/10", content);
+               
 
-                // get StatusCode of server. 200 - Ok!
-                Console.WriteLine(response.StatusCode.ToString());
-
-                // if status code is OK...
-                if (response.StatusCode == HttpStatusCode.OK)
+                try
                 {
-                    // reveal use photo button
-                    UsePhoto.IsVisible = true;
+                   // var client = new RestClient("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/11");
+                   // client.Timeout = -1;
+                   // var request = new RestRequest(Method.POST);
+                   // request.AddFile("input_img", result.FullPath);
+                   // IRestResponse response = client.Execute(request);
 
-                    // create Json string
-                    var jsonString = await response.Content.ReadAsStringAsync();
+                    // write to dev StatusCode of server. 200 - Ok!
+                    Console.WriteLine(response.StatusCode.ToString());
 
-                    // deserialize Json string
-                    var cbirResult = CbirResult.FromJson(jsonString);
+                    // if status code is OK...
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        // reveal use photo button
+                        UsePhoto.IsVisible = true;
+
+                        // create Json string
+                        var jsonString = await response.Content.ReadAsStringAsync();
+
+                        //var jsonString = response.Content;
+
+                        var cbirResult = CbirResult.FromJson(jsonString);
+                        // deserialize Json string
+                        //var cbirResult = CbirResult.FromJson(jsonString);
+
+                        // for each key, value pair of cbirResult...
+                        foreach (var kvpCbir in cbirResult.Values)
+                        {
+                            // add its "link" value to CbirLinksList in the Results Page View Model
+                            ResultsPageViewModel.CbirLinksList.Add(kvpCbir.Link.ToString());
+                        }
+                    }
                 }
+                catch (EndOfStreamException endOfStream)
+                {
+                    Console.WriteLine("Error catched" + endOfStream.ToString());
+                }
+                catch (IOException ioException)
+                {
+                    Console.WriteLine($"The file could not be opened: '{ioException}'");
+                }
+                catch (JsonSerializationException jsonSerializationException)
+                {
+                    Console.WriteLine("Error catched" + jsonSerializationException);
+                }
+                catch (ArgumentOutOfRangeException argumentOutOfRangeException)
+                {
+                    Console.WriteLine("Error catched" + argumentOutOfRangeException);
+                }
+                
+
 
             }
         }
@@ -75,6 +125,7 @@ namespace Snapsearch.Views
         /// <param name="e"></param>
         private async void ImageButton_OnClicked(object sender, EventArgs e)
         {
+            //todo - check connectivity
 
             // Open Gallery
             var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
@@ -96,40 +147,72 @@ namespace Snapsearch.Views
                 // show image on screen
                 PickedImage.Source = ImageSource.FromStream(() => stream);
 
+                // ResultsPageViewModel.ResultImage.Source = ImageSource.FromStream(() => stream);
+
                 // get data ready for post request to api
                 content.Add(new StreamContent(await result.OpenReadAsync()), "input_img", result.FileName);
 
+               
+
                 // create new httpclient
                 var httpClient = new HttpClient(); // Http
-
-                // send post request to api
-                // important: the url to the api is the IP-Adress of your computer and not localhost !
-                var response = await httpClient.PostAsync("http://192.168.1.24:5000/uploadimage/10", content); //Http
-
-                // write status code to console (for dev)
-                Console.WriteLine(response.StatusCode.ToString());
-
-                // if status code from server is 200 OK...
-                if (response.StatusCode == HttpStatusCode.OK)
+                
+                try
                 {
-                    // make use photo button visible 
-                    UsePhoto.IsVisible = true;
-
-                    // create Json string
-                    var jsonString = await response.Content.ReadAsStringAsync();
-
-                    // deserialize Json string
-                    var cbirResult = CbirResult.FromJson(jsonString);
 
 
+                    // send post request to api
+                    // important: the url to the api is the IP-Adress of your computer and not localhost !
+                    var response = await httpClient.PostAsync("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/11", content);
+                    
+                    response.Content.Headers.Add("Accept-Encoding", "identity");
+                    // write status code to console (for dev)
+                    Console.WriteLine(response.StatusCode.ToString());
+
+                    // if status code from server is 200 OK...
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        // make use photo button visible 
+                        UsePhoto.IsVisible = true;
+
+                        // create Json string
+                        var jsonString = await response.Content.ReadAsStringAsync();
+
+                        // deserialize Json string
+                        var cbirResult = CbirResult.FromJson(jsonString);
+
+                        // for each key, value pair of cbirResult...
+                        foreach (var kvpCbir in cbirResult.Values)
+                        {
+                            // add its "link" value to CbirLinksList in the Results Page View Model
+                            ResultsPageViewModel.CbirLinksList.Add(kvpCbir.Link.ToString());
+                        }
+
+                        ;
+
+                    }
+                }
+                catch (EndOfStreamException endOfStream)
+                {
+                    Console.WriteLine("Error catched" + endOfStream.ToString());
+                }
+                catch (IOException ioException)
+                {
+                    Console.WriteLine($"The file could not be opened: '{ioException}'");
                 }
             }
+
+            
         }
 
-
+        // When Use Photo Button is clicked...
         private async void UsePhoto_OnClicked(object sender, EventArgs e)
         {
+            // switch to next Results Page
             await Navigation.PushAsync(new ResultsPage());
         }
+
+
+
     }
 }

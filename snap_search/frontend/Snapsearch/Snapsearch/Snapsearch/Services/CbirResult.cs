@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Net.Http;
 
 namespace Snapsearch.Services
 {
@@ -12,7 +13,7 @@ namespace Snapsearch.Services
         public string Score { get; set; }
 
         [JsonProperty("link")]
-        public string Link { get; set; }
+        public Uri Link { get; set; }
     }
 
     public partial class CbirResult

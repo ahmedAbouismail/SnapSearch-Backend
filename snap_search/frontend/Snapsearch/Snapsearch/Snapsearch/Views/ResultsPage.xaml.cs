@@ -1,5 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using Snapsearch.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net.Http;
 
 namespace Snapsearch.Views
 {
@@ -10,7 +12,10 @@ namespace Snapsearch.Views
         {
             InitializeComponent();
 
+            //todo - use this binding context for image urls.
+            //BindingContext = ResultsPageViewModel.CbirLinksList;
 
+          //  GenericImage.Source = ResultsPageViewModel.ResultImage.Source;
 
         }
 
@@ -27,13 +32,14 @@ namespace Snapsearch.Views
 
         //    SizeChanged -= MainPage_SizeChanged;
 
-
+       
         //}
 
         private const int Margin = 20;
 
         protected override void OnSizeAllocated(double width, double height)
         {
+            
             base.OnSizeAllocated(width, height);
 
             // set the position of all the screen elements
