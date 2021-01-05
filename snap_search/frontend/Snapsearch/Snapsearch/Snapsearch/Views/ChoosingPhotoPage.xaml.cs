@@ -5,7 +5,8 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,9 +20,9 @@ namespace Snapsearch.Views
         {
             InitializeComponent();
 
-            
+
         }
-        
+
         /// <summary>
         ///     event handler for capturing photo button
         /// </summary>
@@ -46,49 +47,73 @@ namespace Snapsearch.Views
                 // Show image on screen
                 PickedImage.Source = ImageSource.FromStream(() => stream);
 
-             //   ResultsPageViewModel.ResultImage.Source = ImageSource.FromStream(() => stream);
-
+                //   ResultsPageViewModel.ResultImage.Source = ImageSource.FromStream(() => stream);
+                
                 // Create Image (add data to the multiformdatacontent..)
                 content.Add(new StreamContent(await result.OpenReadAsync()), "input_img", result.FileName);
 
-                // create new HttpClient
-                //var httpClient = new HttpClient(); 
+                
 
+                // create new HttpClient
+                var httpClient = new HttpClient(); 
+                
 
                 // Post request with captured photo
-                // important: the url to the api is the IP-Adress of your computer and not localhost !
-                //var response = await httpClient.PostAsync("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/10", content); 
-                var client = new RestClient("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/11");
-                client.Timeout = -1;
-                var request = new RestRequest(Method.POST);
-                request.AddFile("input_img", result.FullPath);
-                IRestResponse response = client.Execute(request);
-                // write to dev StatusCode of server. 200 - Ok!
-                Console.WriteLine(response.StatusCode.ToString());
+                var response = await httpClient.PostAsync("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/10", content);
+               
 
-                // if status code is OK...
-                if (response.StatusCode == HttpStatusCode.OK)
+                try
                 {
-                    // reveal use photo button
-                    UsePhoto.IsVisible = true;
+                   // var client = new RestClient("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/11");
+                   // client.Timeout = -1;
+                   // var request = new RestRequest(Method.POST);
+                   // request.AddFile("input_img", result.FullPath);
+                   // IRestResponse response = client.Execute(request);
 
-                    // create Json string
-                    //var jsonString = await response.Content.ReadAsStringAsync();
-                    var jsonString = response.Content;
+                    // write to dev StatusCode of server. 200 - Ok!
+                    Console.WriteLine(response.StatusCode.ToString());
 
-                    var cbirResult = CbirResult.FromJson(jsonString);
-                    // deserialize Json string
-                    //var cbirResult = CbirResult.FromJson(jsonString);
-
-                    // for each key, value pair of cbirResult...
-                    foreach (var kvpCbir in cbirResult.Values)
+                    // if status code is OK...
+                    if (response.StatusCode == HttpStatusCode.OK)
                     {
-                        // add its "link" value to CbirLinksList in the Results Page View Model
-                        ResultsPageViewModel.CbirLinksList.Add(kvpCbir.Link.ToString());
-                    }
+                        // reveal use photo button
+                        UsePhoto.IsVisible = true;
 
-                    
+                        // create Json string
+                        var jsonString = await response.Content.ReadAsStringAsync();
+
+                        //var jsonString = response.Content;
+
+                        var cbirResult = CbirResult.FromJson(jsonString);
+                        // deserialize Json string
+                        //var cbirResult = CbirResult.FromJson(jsonString);
+
+                        // for each key, value pair of cbirResult...
+                        foreach (var kvpCbir in cbirResult.Values)
+                        {
+                            // add its "link" value to CbirLinksList in the Results Page View Model
+                            ResultsPageViewModel.CbirLinksList.Add(kvpCbir.Link.ToString());
+                        }
+                    }
                 }
+                catch (EndOfStreamException endOfStream)
+                {
+                    Console.WriteLine("Error catched" + endOfStream.ToString());
+                }
+                catch (IOException ioException)
+                {
+                    Console.WriteLine($"The file could not be opened: '{ioException}'");
+                }
+                catch (JsonSerializationException jsonSerializationException)
+                {
+                    Console.WriteLine("Error catched" + jsonSerializationException);
+                }
+                catch (ArgumentOutOfRangeException argumentOutOfRangeException)
+                {
+                    Console.WriteLine("Error catched" + argumentOutOfRangeException);
+                }
+                
+
 
             }
         }
@@ -116,53 +141,68 @@ namespace Snapsearch.Views
                 // read the image data
                 var stream = await result.OpenReadAsync();
 
-                
-
-                
-
                 // create multipart form data content for http
                 var content = new MultipartFormDataContent();
 
                 // show image on screen
                 PickedImage.Source = ImageSource.FromStream(() => stream);
 
-               // ResultsPageViewModel.ResultImage.Source = ImageSource.FromStream(() => stream);
+                // ResultsPageViewModel.ResultImage.Source = ImageSource.FromStream(() => stream);
 
                 // get data ready for post request to api
                 content.Add(new StreamContent(await result.OpenReadAsync()), "input_img", result.FileName);
 
+               
+
                 // create new httpclient
                 var httpClient = new HttpClient(); // Http
-
-                // send post request to api
-                // important: the url to the api is the IP-Adress of your computer and not localhost !
-                var response = await httpClient.PostAsync("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/11", content);
-
-                // write status code to console (for dev)
-                Console.WriteLine(response.StatusCode.ToString());
-
-                // if status code from server is 200 OK...
-                if (response.StatusCode == HttpStatusCode.OK)
+                
+                try
                 {
-                    // make use photo button visible 
-                    UsePhoto.IsVisible = true;
 
-                    // create Json string
-                    var jsonString = await response.Content.ReadAsStringAsync();
 
-                    // deserialize Json string
-                    var cbirResult = CbirResult.FromJson(jsonString);
-
-                    // for each key, value pair of cbirResult...
-                    foreach (var kvpCbir in cbirResult.Values)
-                    {
-                        // add its "link" value to CbirLinksList in the Results Page View Model
-                        ResultsPageViewModel.CbirLinksList.Add(kvpCbir.Link.ToString());
-                    };
-
+                    // send post request to api
+                    // important: the url to the api is the IP-Adress of your computer and not localhost !
+                    var response = await httpClient.PostAsync("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/11", content);
                     
+                    response.Content.Headers.Add("Accept-Encoding", "identity");
+                    // write status code to console (for dev)
+                    Console.WriteLine(response.StatusCode.ToString());
+
+                    // if status code from server is 200 OK...
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        // make use photo button visible 
+                        UsePhoto.IsVisible = true;
+
+                        // create Json string
+                        var jsonString = await response.Content.ReadAsStringAsync();
+
+                        // deserialize Json string
+                        var cbirResult = CbirResult.FromJson(jsonString);
+
+                        // for each key, value pair of cbirResult...
+                        foreach (var kvpCbir in cbirResult.Values)
+                        {
+                            // add its "link" value to CbirLinksList in the Results Page View Model
+                            ResultsPageViewModel.CbirLinksList.Add(kvpCbir.Link.ToString());
+                        }
+
+                        ;
+
+                    }
+                }
+                catch (EndOfStreamException endOfStream)
+                {
+                    Console.WriteLine("Error catched" + endOfStream.ToString());
+                }
+                catch (IOException ioException)
+                {
+                    Console.WriteLine($"The file could not be opened: '{ioException}'");
                 }
             }
+
+            
         }
 
         // When Use Photo Button is clicked...
@@ -172,7 +212,7 @@ namespace Snapsearch.Views
             await Navigation.PushAsync(new ResultsPage());
         }
 
-        
+
 
     }
 }

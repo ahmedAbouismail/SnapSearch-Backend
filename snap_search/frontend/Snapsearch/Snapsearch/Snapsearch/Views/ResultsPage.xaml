@@ -28,15 +28,17 @@
                 AbsoluteLayout.LayoutBounds="20, 220, 350, 400"
                 BackgroundColor="Transparent">
                 <Grid>
-                    <Frame x:Name="BottomGradient">
+                    <!--<Frame x:Name="BottomGradient">
                         <Frame.Background>
-                            <!--  StartPoint defaults to (0,0)  -->
+                    -->
+                    <!--  StartPoint defaults to (0,0)  -->
+                    <!--
                             <LinearGradientBrush EndPoint="0,1">
                                 <GradientStop Offset="0.1" Color="Transparent" />
                                 <GradientStop Offset="1.0" Color="Gray" />
                             </LinearGradientBrush>
                         </Frame.Background>
-                    </Frame>
+                    </Frame>-->
                     <FlexLayout
                         BindableLayout.ItemsSource="{Binding Images}"
                         Direction="Row"
@@ -56,10 +58,13 @@
                                     <Grid>
                                         <Image
                                             x:Name="ProductImage"
+                                            Margin="10"
+                                            HeightRequest="160"
                                             HorizontalOptions="Center"
                                             InputTransparent="True"
                                             Source="{Binding ImageUrl}"
-                                            VerticalOptions="Start" />
+                                            VerticalOptions="Start"
+                                            WidthRequest="160" />
                                         <StackLayout>
                                             <Label
                                                 Margin="20,120"

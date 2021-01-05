@@ -1,6 +1,7 @@
 ﻿using Snapsearch.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net.Http;
 
 namespace Snapsearch.Views
 {
