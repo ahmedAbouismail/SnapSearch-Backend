@@ -13,9 +13,10 @@ namespace Snapsearch.Views
             InitializeComponent();
 
             //todo - use this binding context for image urls.
-            //BindingContext = ResultsPageViewModel.CbirLinksList;
 
-          //  GenericImage.Source = ResultsPageViewModel.ResultImage.Source;
+            
+
+
 
         }
 
@@ -75,6 +76,14 @@ namespace Snapsearch.Views
                 width: width - (2 * Margin),
                 height: height - (TextLabel.Bounds.Bottom + Margin));
             AbsoluteLayout.SetLayoutBounds(ScrollContainer, scrollContainerRect);
+
+            // Scroll Container
+            Rectangle flexLayoutContainerRect = new Rectangle(
+                x: width / 2 - ScrollContainer.Width / 2,
+                y: 4 * Margin + logoRect.Height + genericImageRect.Height + textLabelRect.Height,
+                width: width - (2 * Margin),
+                height: height - (TextLabel.Bounds.Bottom + Margin));
+            AbsoluteLayout.SetLayoutBounds(ResultFlexLayout, scrollContainerRect);
 
 
         }
