@@ -46,7 +46,7 @@ namespace Snapsearch.Views
             if (result != null)
             {
                 // read captured photo
-                var stream = await result.OpenReadAsync();
+                var stream = await result.OpenReadAsync().ConfigureAwait(false);
 
                 // create Data content for Http
                 //var content = new MultipartFormDataContent();
@@ -54,18 +54,26 @@ namespace Snapsearch.Views
                 // Show image on screen
                 PickedImage.Source = ImageSource.FromStream(() => stream);
 
-                
+
 
                 // ResultsPageViewModel.ResultImage.Source = FromStreamImageSource;
 
                 var content = new CbirApiServices();
 
-                _postTaskResult =  content.PostRequestCbirResponseDictionary(result.FullPath);
+                await Task.Run(async () =>
+                {
+                    
+                    _postTaskResult = await content.PostRequestCbirResponseDictionary(result.FullPath);
 
-                if (content.CbirApiServicesStatusCode == HttpStatusCode.OK)
+                });
+
+                if ( content.CbirApiServicesStatusCode == HttpStatusCode.OK)
                 {
                     UsePhoto.IsVisible = true;
                 }
+
+
+
 
                 #region code that is currently not used
 
@@ -156,7 +164,7 @@ namespace Snapsearch.Views
             if (result != null)
             {
                 // read the image data
-                var stream = await result.OpenReadAsync();
+                var stream = await result.OpenReadAsync().ConfigureAwait(false);
 
                 // show image on screen
                 PickedImage.Source = ImageSource.FromStream(() => stream);
@@ -165,7 +173,13 @@ namespace Snapsearch.Views
 
                 var content = new CbirApiServices();
 
-                _postTaskResult = content.PostRequestCbirResponseDictionary(result.FullPath);
+                await Task.Run(async () =>
+                {
+
+                    _postTaskResult = await content.PostRequestCbirResponseDictionary(result.FullPath);
+
+
+                });
 
                 if (content.CbirApiServicesStatusCode == HttpStatusCode.OK)
                 {
@@ -223,11 +237,21 @@ namespace Snapsearch.Views
         // When Use Photo Button is clicked...
         private async void UsePhoto_OnClicked(object sender, EventArgs e)
         {
-
+            //int counter = 0;
             foreach (var cbirLinks in _postTaskResult.Values)
             {
-                ResultsPageViewModel.CbirLinksList.Add(cbirLinks.Link.ToString());
+                
+                    //while(counter <= 9)
+                    //{
+                    //    ResultsPageViewModel.CbirLinksList.Insert(counter,cbirLinks.Link.ToString());
+                    //    counter++;
+                    //    break;
+                    //}
+
+                    ResultsPageViewModel.CbirLinksList.Add(cbirLinks.Link.ToString());
             }
+
+
             // switch to next Results Page
             await Navigation.PushAsync(new ResultsPage());
 

@@ -14,7 +14,7 @@ namespace Snapsearch.ViewModels
         public IList<ImageViewModel> Images { get; set; }
 
 
-        public static IList<string> CbirLinksList = new List<string>();
+        public static IList<string> CbirLinksList = new List<string>(10);
 
         
 
@@ -47,43 +47,43 @@ namespace Snapsearch.ViewModels
                 new ImageViewModel()
                 {
                     ImageName = "Image 4",
-                    ImageUrl = CbirLinksList[0],
+                    ImageUrl = CbirLinksList[3],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 5",
-                    ImageUrl = CbirLinksList[1],
+                    ImageUrl = CbirLinksList[4],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 6",
-                    ImageUrl = CbirLinksList[2],
+                    ImageUrl = CbirLinksList[5],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 7",
-                    ImageUrl = CbirLinksList[0],
+                    ImageUrl = CbirLinksList[6],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 8",
-                    ImageUrl = CbirLinksList[1],
+                    ImageUrl = CbirLinksList[7],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 9",
-                    ImageUrl = CbirLinksList[2],
+                    ImageUrl = CbirLinksList[8],
                     MatchPercentage = 0
                 },
                 new ImageViewModel()
                 {
                     ImageName = "Image 10",
-                    ImageUrl = CbirLinksList[0],
+                    ImageUrl = CbirLinksList[9],
                     MatchPercentage = 0
                 },
             };

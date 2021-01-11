@@ -31,7 +31,7 @@ namespace Snapsearch.Services
 
         public CbirApiServices()
         {
-            restClient = new RestClient("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/4");
+            restClient = new RestClient("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/11");
 
             restClient.Timeout = -1;
 
@@ -42,7 +42,7 @@ namespace Snapsearch.Services
         public HttpStatusCode CbirApiServicesStatusCode;
 
 
-        public IDictionary<string, CbirApiResponseModel> PostRequestCbirResponseDictionary(
+        public async Task<IDictionary<string, CbirApiResponseModel>> PostRequestCbirResponseDictionary(
             string fullFilePath)
         {
             try
@@ -61,7 +61,7 @@ namespace Snapsearch.Services
 
                 var cbirResult = CbirApiResponseModel.FromJson(jsonString);
 
-                return cbirResult;
+                return await Task.FromResult(cbirResult).ConfigureAwait(false);
 
             }
             catch (Exception e)
