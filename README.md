@@ -4,8 +4,6 @@ Snapserch is a CBIR search app
 
 ## Requirements
 - Python 3.8
-- MySQL Workbench 8.0 CE
-- XAMPP Control Panel v3.2.2
 - Postman
 - Docker
 
