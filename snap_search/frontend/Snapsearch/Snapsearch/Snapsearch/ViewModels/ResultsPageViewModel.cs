@@ -11,6 +11,9 @@ namespace Snapsearch.ViewModels
 {
     public class ResultsPageViewModel : BaseViewModel
     {
+
+        public static string PhotoPath { get; set; }
+
         public IList<ImageViewModel> Images { get; set; }
 
 

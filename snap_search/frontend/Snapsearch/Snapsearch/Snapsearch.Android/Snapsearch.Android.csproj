@@ -37,6 +37,7 @@
     <AndroidLinkSkip>
     </AndroidLinkSkip>
     <AndroidTlsProvider>btls</AndroidTlsProvider>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,6 +73,9 @@
     </PackageReference>
     <PackageReference Include="RestSharp">
       <Version>106.11.8-alpha.0.12</Version>
+    </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.8.0-beta</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1-preview1" />
@@ -152,9 +156,23 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\snapsearch_homepageimage.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <AndroidResource Include="Resources\xml\network_security_config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\snapsearchlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-mdpi\snapsearchlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\snapsearchlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\snapsearchlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\snapsearchlogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

@@ -12,6 +12,7 @@ using Snapsearch.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.IO;
 
 namespace Snapsearch.Views
 {
@@ -24,9 +25,11 @@ namespace Snapsearch.Views
 
         }
 
+        // private dictionary for results of Post request
         private IDictionary<string, CbirApiResponseModel> _postTaskResult = new Dictionary<string, CbirApiResponseModel>();
 
-        
+        // private string for saving the picked image
+        private string _photoPath;
         
 
 
@@ -48,32 +51,33 @@ namespace Snapsearch.Views
                 // read captured photo
                 var stream = await result.OpenReadAsync().ConfigureAwait(false);
 
-                // create Data content for Http
-                //var content = new MultipartFormDataContent();
+                // save captured photo
+                await LoadPhotoAsync(result);
 
-                // Show image on screen
+                // send Image source to ResultsPageViewModel
+                ResultsPageViewModel.PhotoPath = _photoPath;
+
+                // show image on screen
                 PickedImage.Source = ImageSource.FromStream(() => stream);
 
-
-
-                // ResultsPageViewModel.ResultImage.Source = FromStreamImageSource;
-
+                // boot up CbirApiServices
                 var content = new CbirApiServices();
 
+                // run task of...
                 await Task.Run(async () =>
                 {
-                    
+
+                    // CbirApiServices and get a dictionary from the result, save it to private variable
                     _postTaskResult = await content.PostRequestCbirResponseDictionary(result.FullPath);
 
                 });
 
+                // if Post Request Status Code = Ok...
                 if ( content.CbirApiServicesStatusCode == HttpStatusCode.OK)
                 {
+                    // make Use Photo Button visible
                     UsePhoto.IsVisible = true;
                 }
-
-
-
 
                 #region code that is currently not used
 
@@ -169,20 +173,27 @@ namespace Snapsearch.Views
                 // show image on screen
                 PickedImage.Source = ImageSource.FromStream(() => stream);
 
-                
+                // save image
+                await LoadPhotoAsync(result);
 
+                // pass image to ResultsPageViewModel
+                ResultsPageViewModel.PhotoPath = _photoPath;
+
+                // boot up CbirApiServices
                 var content = new CbirApiServices();
 
+                // run task of...
                 await Task.Run(async () =>
                 {
-
+                    // CbirApiServices and get a dictionary from the result, save it to private variable
                     _postTaskResult = await content.PostRequestCbirResponseDictionary(result.FullPath);
-
 
                 });
 
+                // if Post Request Status Code = Ok...
                 if (content.CbirApiServicesStatusCode == HttpStatusCode.OK)
                 {
+                    // make Use Photo Button visible
                     UsePhoto.IsVisible = true;
                 }
 
@@ -251,10 +262,23 @@ namespace Snapsearch.Views
                     ResultsPageViewModel.CbirLinksList.Add(cbirLinks.Link.ToString());
             }
 
-
             // switch to next Results Page
             await Navigation.PushAsync(new ResultsPage());
 
+        }
+
+        async Task LoadPhotoAsync(FileResult photo)
+        {
+            // canceled
+            if(photo == null) { return; }
+
+            //save file into local storage
+            var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+            using (var stream = await photo.OpenReadAsync())
+            using (var newStream = File.OpenWrite(newFile))
+                await stream.CopyToAsync(newStream);
+
+            _photoPath = newFile;
 
         }
     }

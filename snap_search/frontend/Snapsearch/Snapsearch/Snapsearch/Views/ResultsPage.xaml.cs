@@ -12,12 +12,6 @@ namespace Snapsearch.Views
         {
             InitializeComponent();
 
-            //todo - use this binding context for image urls.
-
-            
-
-
-
         }
 
         //protected override void OnAppearing()
@@ -44,7 +38,6 @@ namespace Snapsearch.Views
             base.OnSizeAllocated(width, height);
 
             // set the position of all the screen elements
-
             //Logo Image
             Rectangle logoRect = new Rectangle(
                 x: width / 2 - LogoImage.Width / 2,
@@ -53,13 +46,16 @@ namespace Snapsearch.Views
                 height: LogoImage.Height);
             AbsoluteLayout.SetLayoutBounds(LogoImage, logoRect);
 
-            //Generic Image
+            // Generic Image
             Rectangle genericImageRect = new Rectangle(
                 x: width / 2 - GenericImage.Width / 2,
                 y: 2 * Margin + logoRect.Height,
                 width: GenericImage.Width,
                 height: GenericImage.Height);
             AbsoluteLayout.SetLayoutBounds(GenericImage, genericImageRect);
+
+            // Picked Image
+            AbsoluteLayout.SetLayoutBounds(PickedImage, genericImageRect);
 
             // Text Label 
             Rectangle textLabelRect = new Rectangle(

@@ -12,6 +12,7 @@
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
     <PackageReference Include="RestSharp" Version="106.11.8-alpha.0.12" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.0-beta" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1-preview1" />  
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.763-beta" />
