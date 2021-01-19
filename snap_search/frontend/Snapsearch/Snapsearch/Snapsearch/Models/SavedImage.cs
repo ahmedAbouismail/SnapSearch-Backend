@@ -6,7 +6,7 @@ namespace Snapsearch.Models
 {
     public class SavedImage
     {
-        public SavedImage(){}
+        public SavedImage() { }
 
         public int Id { get; set; }
 

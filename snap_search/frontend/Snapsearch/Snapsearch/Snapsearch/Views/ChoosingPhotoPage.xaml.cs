@@ -48,17 +48,23 @@ namespace Snapsearch.Views
             // if photo is captured
             if (result != null)
             {
-                // read captured photo
-                var stream = await result.OpenReadAsync().ConfigureAwait(false);
+                try
+                {
+                    // read captured photo
+                    var stream = await result.OpenReadAsync();
 
+                    // show image on screen
+                    PickedImage.Source = ImageSource.FromStream(() => stream);
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("No Camera", ":( No camera available." + ex.Message, "OK");
+                }
                 // save captured photo
                 await LoadPhotoAsync(result);
 
                 // send Image source to ResultsPageViewModel
                 ResultsPageViewModel.PhotoPath = _photoPath;
-
-                // show image on screen
-                PickedImage.Source = ImageSource.FromStream(() => stream);
 
                 // boot up CbirApiServices
                 var content = new CbirApiServices();
@@ -68,7 +74,7 @@ namespace Snapsearch.Views
                 {
 
                     // CbirApiServices and get a dictionary from the result, save it to private variable
-                    _postTaskResult = await content.PostRequestCbirResponseDictionary(result.FullPath);
+                    _postTaskResult = await content.PostRequestCbirResponseDictionaryAsync(result.FullPath); //async
 
                 });
 
@@ -167,12 +173,16 @@ namespace Snapsearch.Views
             // if an image was picked...
             if (result != null)
             {
+
                 // read the image data
-                var stream = await result.OpenReadAsync().ConfigureAwait(false);
+                var stream = await result.OpenReadAsync();
 
-                // show image on screen
-                PickedImage.Source = ImageSource.FromStream(() => stream);
+                    // show image on screen
+                    PickedImage.Source = ImageSource.FromStream(() => stream);
 
+
+
+                
                 // save image
                 await LoadPhotoAsync(result);
 
@@ -186,7 +196,7 @@ namespace Snapsearch.Views
                 await Task.Run(async () =>
                 {
                     // CbirApiServices and get a dictionary from the result, save it to private variable
-                    _postTaskResult = await content.PostRequestCbirResponseDictionary(result.FullPath);
+                    _postTaskResult = await content.PostRequestCbirResponseDictionaryAsync(result.FullPath);
 
                 });
 

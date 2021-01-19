@@ -42,7 +42,7 @@ namespace Snapsearch.Services
         public HttpStatusCode CbirApiServicesStatusCode;
 
 
-        public async Task<IDictionary<string, CbirApiResponseModel>> PostRequestCbirResponseDictionary(
+        public async Task<IDictionary<string, CbirApiResponseModel>> PostRequestCbirResponseDictionaryAsync(
             string fullFilePath)
         {
             try
@@ -51,7 +51,7 @@ namespace Snapsearch.Services
 
                 request.AddFile("input_img", fullFilePath);
 
-                var response =  restClient.Execute(request);
+                var response =  await restClient.ExecuteAsync(request);
 
                 Console.WriteLine(response.StatusCode);
 
@@ -61,7 +61,7 @@ namespace Snapsearch.Services
 
                 var cbirResult = CbirApiResponseModel.FromJson(jsonString);
 
-                return await Task.FromResult(cbirResult).ConfigureAwait(false);
+                return await Task.FromResult(cbirResult);
 
             }
             catch (Exception e)
