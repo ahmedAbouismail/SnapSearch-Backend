@@ -3,9 +3,7 @@ test_and_build:
   tags: 
     - Docker
   script:
-    - ls
-    - cd /snap_search/backend/image_embeddings
-    - docker build -t abudimo/snapsearch:latest .
+    - docker build -t abudimo/snapsearch:latest /snap_search/backend/image_embeddings
     - docker push abudimo/snapsearch:latest
 
     
