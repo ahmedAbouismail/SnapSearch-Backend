@@ -5,5 +5,5 @@ COPY Pipfile Pipfile.lock /app/
 RUN pipenv lock -r > requirments.txt
 RUN pip install -r requirments.txt
 COPY . /app
-ENTRYPOINT [ "python", "server.py" ]  
+CMD [ "python", "server.py" ]  
 
