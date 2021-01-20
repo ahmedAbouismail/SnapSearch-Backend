@@ -4,7 +4,7 @@ test_and_build:
     - docker login -u "abudimo" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   stage: build
   tags: 
-    - Docker  
+    - linux  
   script:
     - cd snap_search/backend/image_embeddings
     - docker build -t abudimo/snapsearch:latest .
