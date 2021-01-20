@@ -1,8 +1,8 @@
 test_and_build:
   image: docker:latest
-  stage: Docker
+  stage: build
   tags: 
-    - linux
+    - Docker
   script:
     - cat generated-bash-script | /bin/bash
     - cd snap_search/backend/image_embeddings
