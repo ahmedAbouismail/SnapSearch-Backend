@@ -1,5 +1,6 @@
 test_and_build:
-  stage: build
+  image: docker:latest
+  stage: Docker
   tags: 
     - linux
   script:
