@@ -1,11 +1,11 @@
 test_and_build:
   stage: build
   tags: 
-    - Docker
+    - linux
   script:
     - cd snap_search/backend/image_embeddings
-    - build -t abudimo/snapsearch:latest .
-    - push abudimo/snapsearch:latest
+    - docker build -t abudimo/snapsearch:latest .
+    - docker push abudimo/snapsearch:latest
 
     
 
