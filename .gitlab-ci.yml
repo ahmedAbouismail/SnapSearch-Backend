@@ -1,8 +1,4 @@
-stages:
-  - test and build 
-  
-image_emmbedings:
-  stage: test and build 
+test_and_build:
   tags: Docker
   script:
     - cd /snap_search/backend/image_embeddings
