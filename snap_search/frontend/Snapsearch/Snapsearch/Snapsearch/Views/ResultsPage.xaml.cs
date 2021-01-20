@@ -12,6 +12,8 @@ namespace Snapsearch.Views
         {
             InitializeComponent();
 
+            PickedImage.Source = ResultsPageViewModel.PhotoPath;
+
         }
 
         //protected override void OnAppearing()
@@ -30,7 +32,7 @@ namespace Snapsearch.Views
        
         //}
 
-        private const int Margin = 20;
+        private const int Margin = 10;
 
         protected override void OnSizeAllocated(double width, double height)
         {
@@ -42,16 +44,16 @@ namespace Snapsearch.Views
             Rectangle logoRect = new Rectangle(
                 x: width / 2 - LogoImage.Width / 2,
                 y: Margin,
-                width: LogoImage.Width,
-                height: LogoImage.Height);
+                width: 100,
+                height: 30);
             AbsoluteLayout.SetLayoutBounds(LogoImage, logoRect);
 
             // Generic Image
             Rectangle genericImageRect = new Rectangle(
                 x: width / 2 - GenericImage.Width / 2,
                 y: 2 * Margin + logoRect.Height,
-                width: GenericImage.Width,
-                height: GenericImage.Height);
+                width: 150,
+                height: 150);
             AbsoluteLayout.SetLayoutBounds(GenericImage, genericImageRect);
 
             // Picked Image

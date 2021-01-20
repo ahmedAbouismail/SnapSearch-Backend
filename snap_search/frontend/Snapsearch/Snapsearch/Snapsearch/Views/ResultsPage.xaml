@@ -21,7 +21,7 @@
                 Source="snapsearch_logo" />
             <!--  The image that was searched  -->
             <Image x:Name="GenericImage"/>
-            <Image x:Name="PickedImage" Source="{Binding PhotoPath}"/>
+            <Image x:Name="PickedImage"/>
             <!--  Text for informing the user with the amount of search results  -->
             <Label x:Name="TextLabel" Text="We found 10 images" />
             <ScrollView

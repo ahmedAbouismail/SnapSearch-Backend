@@ -19,8 +19,6 @@ namespace Snapsearch.ViewModels
 
         public static IList<string> CbirLinksList = new List<string>(10);
 
-        
-
         public ResultsPageViewModel()
         {
 

@@ -180,9 +180,6 @@ namespace Snapsearch.Views
                     // show image on screen
                     PickedImage.Source = ImageSource.FromStream(() => stream);
 
-
-
-                
                 // save image
                 await LoadPhotoAsync(result);
 
@@ -196,7 +193,7 @@ namespace Snapsearch.Views
                 await Task.Run(async () =>
                 {
                     // CbirApiServices and get a dictionary from the result, save it to private variable
-                    _postTaskResult = await content.PostRequestCbirResponseDictionaryAsync(result.FullPath);
+                    _postTaskResult = await content.PostRequestCbirResponseDictionaryAsync(result.FullPath); //async
 
                 });
 
@@ -258,18 +255,11 @@ namespace Snapsearch.Views
         // When Use Photo Button is clicked...
         private async void UsePhoto_OnClicked(object sender, EventArgs e)
         {
-            //int counter = 0;
+            ResultsPageViewModel.CbirLinksList.Clear();
+
             foreach (var cbirLinks in _postTaskResult.Values)
             {
-                
-                    //while(counter <= 9)
-                    //{
-                    //    ResultsPageViewModel.CbirLinksList.Insert(counter,cbirLinks.Link.ToString());
-                    //    counter++;
-                    //    break;
-                    //}
-
-                    ResultsPageViewModel.CbirLinksList.Add(cbirLinks.Link.ToString());
+                ResultsPageViewModel.CbirLinksList.Add(cbirLinks.Link.ToString());
             }
 
             // switch to next Results Page
@@ -277,6 +267,7 @@ namespace Snapsearch.Views
 
         }
 
+        // saving image to the phone
         async Task LoadPhotoAsync(FileResult photo)
         {
             // canceled
