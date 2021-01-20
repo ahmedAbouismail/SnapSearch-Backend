@@ -1,6 +1,8 @@
 test_and_build:
   image: docker:latest
   stage: build
+  services:
+    - docker:dind
   tags: 
     - Docker
   script:
