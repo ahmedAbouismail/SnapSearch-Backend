@@ -7,8 +7,8 @@ image_emmbedings:
   script:
     - cd /snap_search/backend/image_embeddings
     - docker build -t snap .
-    - docker run snap python image_embeddings/image_embeddings/knn/test_knn.py
-    - docker run snap python image_embeddings/image_embeddings/inference/test_inference.py
+    # - docker run snap python image_embeddings/image_embeddings/knn/test_knn.py
+    # - docker run snap python image_embeddings/image_embeddings/inference/test_inference.py
     - docker run -p 5000:5000 snap
     
 
