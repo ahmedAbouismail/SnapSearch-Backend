@@ -2,11 +2,10 @@ test_and_build:
   image: docker:latest
   stage: build
   services:
-    - docker:dind
+    - abudimo/snapsearch:latest
   tags: 
     - Docker
   script:
-    - cat generated-bash-script | /bin/bash
     - cd snap_search/backend/image_embeddings
     - docker build -t abudimo/snapsearch:latest .
     - docker push abudimo/snapsearch:latest
