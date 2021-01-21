@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def test():
-    return 'Try the server CI/CD'
+    return 'Try the server CI/CD Latest'
 
 @app.route('/uploadimage/<int:result_num>', methods=['POST'])
 def process_image(result_num):
