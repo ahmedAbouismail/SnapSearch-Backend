@@ -1,5 +1,5 @@
 test_and_build:
-  image: docker:latest
+  image: teracy/ubuntu:18.04-dind-latest
   before_script:
     
   stage: build

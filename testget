@@ -3,4 +3,8 @@
 git add .
 git commit -m "$1"
 shift 1
-git push origin $1
+if [ -z "$1" ]; then
+    git push origin master
+else
+    git push origin $1
+fi
