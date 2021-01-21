@@ -1,6 +1,5 @@
-
 test_and_build:
-  image: teracy/ubuntu:18.04-dind-latest
+  image: delphairegistry/dind-az-kctl-helm:v1.6
 
   stage: build
   tags:
