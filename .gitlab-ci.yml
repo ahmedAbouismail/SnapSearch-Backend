@@ -7,8 +7,8 @@ test_and_build:
     - Docker  
   script:
     - cd snap_search/backend/image_embeddings
-    - docker build -t abudimo/snapsearch:latest .
-    - docker push abudimo/snapsearch:latest
+    - docker build -privileged -t abudimo/snapsearch:latest .
+    - docker push -privileged abudimo/snapsearch:latest
 
     
 
