@@ -1,18 +1,13 @@
 test_and_build:
   image: teracy/ubuntu:18.04-dind-latest
-  before_script:
-    
+
   stage: build
-  tags: 
-    - linux  
+  tags:
+    - Docker
   script:
     - curl -sL https://aka.ms/InstallAzureCLIDeb |  bash
-    
-    # - docker login -u "abudimo" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker
+    - docker login $CI_REGISTRY -u "abudimo" -p "$CI_REGISTRY_PASSWORD"
     # - cd snap_search/backend/image_embeddings
-    # - docker build  -t abudimo/snapsearch:latest .
+    # - docker build -t abudimo/snapsearch:latest .
     # - docker push  abudimo/snapsearch:latest
-
-    
-
-
