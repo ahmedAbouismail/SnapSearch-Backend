@@ -13,4 +13,7 @@ test_and_build:
     - cd snap_search/backend/image_embeddings
     - docker build -t abudimo/snapsearch:latest .
     - docker push  abudimo/snapsearch:latest
+    - az login --service-principal --username "$AZURE_CLIENT_ID" --password "$AZURE_CLIENT_SECRET" --tenant "$AZURE_TENANT_ID"
+    - az account show
+    - az container restart -n snapsearch-ci -g snapsearch
 
