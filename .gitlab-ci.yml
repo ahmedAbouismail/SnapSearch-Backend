@@ -1,17 +1,17 @@
 test_and_build:
-  image: delphairegistry/dind-az-kctl-helm:v1.6
+  image: docker:latest
   before_script:
-    - docker login -u "abudimo" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    
   stage: build
   tags: 
     - Docker  
   script:
-    - cd snap_search/backend/image_embeddings
-    - systemctl start docker
-    - service start docker
-    - docker --help
-    - docker build  -t abudimo/snapsearch:latest .
-    - docker push  abudimo/snapsearch:latest
+    - curl -sL https://aka.ms/InstallAzureCLIDeb |  bash
+    
+    # - docker login -u "abudimo" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    # - cd snap_search/backend/image_embeddings
+    # - docker build  -t abudimo/snapsearch:latest .
+    # - docker push  abudimo/snapsearch:latest
 
     
 
