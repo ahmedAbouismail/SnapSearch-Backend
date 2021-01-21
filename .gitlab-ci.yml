@@ -9,7 +9,8 @@ test_and_build:
     - docker
     - docker login $CI_REGISTRY -u "abudimo" -p "$CI_REGISTRY_PASSWORD"
     - curl -sL https://aka.ms/InstallAzureCLIDeb |  bash
-    # - cd snap_search/backend/image_embeddings
-    # - docker build -t abudimo/snapsearch:latest .
-    # - docker push  abudimo/snapsearch:latest
+    - pwd
+    - cd snap_search/backend/image_embeddings
+    - docker build -t abudimo/snapsearch:latest .
+    - docker push  abudimo/snapsearch:latest
 
