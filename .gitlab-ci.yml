@@ -3,7 +3,10 @@ test_and_build:
 
   stage: build
   tags:
-    - azure
+   - Docker 
+   - FB2 
+   - Linux 
+   - Runner
   script:
     
     - docker
