@@ -9,7 +9,7 @@ test_and_build:
   script: 
    - docker
    - pwd
-   - docker login snapsearch.azurecr.io -u snapsearch -p 2s601MKAF38sPdCAa/xUHLWG2kiutfp7
+   - docker login $CI_REGISTRY -u $CI_REGISTRY_PASSWORD -p "$CI_REGISTRY_PASSWORD"
    - docker build -t $CI_REGISTRY_IMAGE .
    - docker push  $CI_REGISTRY_IMAGE
 
