@@ -1,7 +1,7 @@
 from image_embeddings.inference import write_tfrecord
 from image_embeddings.inference import run_inference
 from image_embeddings.knn import get_results
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from PIL import Image 
 import os
 import io
@@ -11,8 +11,8 @@ import io
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
-def test():
-    return 'Walla nfs al shy tot'
+def root():
+    return render_template('index.html')
 
 @app.route('/uploadimage/<int:result_num>', methods=['POST'])
 def process_image(result_num):

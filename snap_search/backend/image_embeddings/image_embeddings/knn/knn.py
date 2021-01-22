@@ -47,7 +47,6 @@ def get_results(path=embeddings_output, k=10):
             p = key
     res = search(index, id_to_name, embeddings[p], k)
     results = {}
-    currentDir = os.path.dirname(__file__)
 
     for score, image_id in res:
         if str(image_id) == name:
@@ -67,27 +66,6 @@ def get_results(path=embeddings_output, k=10):
         
         results.update(d)  
     return json.dumps(results, indent=2)  
-
-def write_to_db():
-    [_, name_to_id, _] = read_embeddings('system_files/tf_flower_embeddings')
-    database = {}
-    currentDir = os.path.dirname(__file__)
-
-    name_ = list(name_to_id.keys())
-    id_ = list(name_to_id.values())
-    
-    for id, name in zip(id_,name_):
-        d = {
-            name:{
-                "image_id" : id,
-                "link": os.path.abspath(os.path.join(currentDir,f"../../system_files/tf_flower_images/{str(name)}.jpeg"))
-            }
-        }
-        database.update(d)
-        
-    return  database
-
-
 
 
 def search(index, id_to_name, emb, k):
