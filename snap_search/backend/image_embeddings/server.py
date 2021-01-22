@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def test():
-    return 'This try should work'
+    return 'Test personal runner with azure'
 
 @app.route('/uploadimage/<int:result_num>', methods=['POST'])
 def process_image(result_num):

@@ -1,30 +1,14 @@
 
-image: docker:19.03.13
-
-variables:
-  DOCKER_TLS_CERTDIR: "/certs"
-
-services:
-  - docker:19.03.13-dind
-
 test_and_build:
-  #image:  teracy/ubuntu:18.04-dind-latest
+  image:  docker:latest
 
   stage: build
   tags:
-   - Docker 
-   - FB2 
-   - Linux 
-   - Runner
+   - linux 
   before_script:
-   - echo "$GITLAB_PASSWORD" | docker login gitlab.rz.htw-berlin.de:5050 --username $GITLAB_USERNAME --password-stdin
-  script:
-    
-    #- docker login $CI_REGISTRY -u "$CI_REGISTRY_PASSWORD" -p "$CI_REGISTRY_PASSWORD"
-
-    - docker build -t gitlab.rz.htw-berlin.de:5050/softwareentwicklungsprojekt/wise2020-21/team9 snap_search/backend/image_embeddings
-    #- docker build -t $CI_REGISTRY_IMAGE .
-    - docker push gitlab.rz.htw-berlin.de:5050/softwareentwicklungsprojekt/wise2020-21/team9
-    #- docker push  $CI_REGISTRY_IMAGE
+   - docker login $CI_REGISTRY -u "$CI_REGISTRY_PASSWORD" -p "$CI_REGISTRY_PASSWORD"
+  script: 
+   - docker build -t $CI_REGISTRY_IMAGE .
+   - docker push  $CI_REGISTRY_IMAGE
 
 
