@@ -1,5 +1,5 @@
 test_and_build:
-  #image: teracy/ubuntu:18.04-dind-latest
+  image: teracy/ubuntu:18.04-dind-latest
   before_script:
    - docker login gitlab.rz.htw-berlin.de:5050 -u $GITLAB_USERNAME -p "$GITLAB_PASSWORD"
   stage: build
