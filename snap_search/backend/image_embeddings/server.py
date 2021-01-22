@@ -10,6 +10,9 @@ import io
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def test():
+    return 'Walla nfs al shy tot'
 
 @app.route('/uploadimage/<int:result_num>', methods=['POST'])
 def process_image(result_num):
@@ -36,4 +39,4 @@ def create_records():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0" ,port=5000) 
+    app.run(debug=True, host="0.0.0.0" ,port=80) 

@@ -54,14 +54,14 @@ def get_results(path=embeddings_output, k=10):
             d = {     
                 str(image_id): {
                     'score': "{:.3f}".format(float(score)),
-                    'link': os.path.abspath(os.path.join(currentDir,f"../../system_files/tf_input_image/{str(image_id)}.jpeg"))
+                    'link': f"https://snapdb.blob.core.windows.net/snapdb/{str(image_id)}.jpeg"
                 }
             }
         else:
             d = {     
                 str(image_id): {
                     'score': "{:.3f}".format(float(score)),
-                    'link': os.path.abspath(os.path.join(currentDir,f"../../system_files/tf_flower_images/{str(image_id)}.jpeg"))
+                    'link': f"https://snapdb.blob.core.windows.net/snapdb/{str(image_id)}.jpeg"
                 }
             }    
         

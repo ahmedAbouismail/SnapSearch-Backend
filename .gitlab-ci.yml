@@ -1,0 +1,15 @@
+
+test_and_build:
+  image:  teracy/ubuntu:18.04-dind-latest
+
+  stage: build
+  tags:
+   - linux 
+   
+  script: 
+   - docker
+   - docker login $CI_REGISTRY -u $CI_USERNAME -p $CI_REGISTRY_PASSWORD
+   - docker build -t $CI_REGISTRY_IMAGE snap_search/backend/image_embeddings
+   - docker push  $CI_REGISTRY_IMAGE
+
+
