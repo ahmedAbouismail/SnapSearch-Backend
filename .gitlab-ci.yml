@@ -8,7 +8,8 @@ test_and_build:
    
   script: 
    - docker
-   - pwd
+   - echo $CI_REGISTRY
+   - echo "$CI_REGISTRY"
    - docker login $CI_REGISTRY -u $CI_REGISTRY_PASSWORD -p $CI_REGISTRY_PASSWORD
    - docker build -t $CI_REGISTRY_IMAGE .
    - docker push  $CI_REGISTRY_IMAGE
