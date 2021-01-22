@@ -10,7 +10,7 @@ test_and_build:
   script:
     
     #- docker login $CI_REGISTRY -u "$CI_REGISTRY_PASSWORD" -p "$CI_REGISTRY_PASSWORD"
-    - docker login gitlab.rz.htw-berlin.de:5050 -u "$GITLAB_USERNAME" -p "$GITLAB_PASSWORD"
+    - docker login gitlab.rz.htw-berlin.de:5050 -u $GITLAB_USERNAME -p $GITLAB_PASSWORD
     - cd snap_search/backend/image_embeddings
     - docker build -t gitlab.rz.htw-berlin.de:5050/softwareentwicklungsprojekt/wise2020-21/team9 .
     #- docker build -t $CI_REGISTRY_IMAGE .
