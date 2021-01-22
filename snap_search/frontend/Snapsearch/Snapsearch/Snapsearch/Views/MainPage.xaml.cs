@@ -16,9 +16,27 @@ namespace Snapsearch.Views
           
         }
 
+
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+
+
+            LogoSvgGrid.TranslationX = (width - 231) / 2;
+            SnapsearchImageSvgGrid.TranslationX = (width - 318) / 2;
+        }
+
         private async void StartSearchingButton_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ChoosingPhotoPage());
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+
         }
 
 

@@ -4,7 +4,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Snapsearch.Views"
-    FlyoutIcon="snapsearch_logo_icon">
+    
+    FlyoutBackdrop="Transparent"
+    FlyoutWidth="250"
+    >
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -12,6 +15,20 @@
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <StackLayout>
+                <Label Text="Snapsearch"
+                   TextColor="#58677D"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+                <Label Text="Release Build v.0.0.01"
+                   TextColor="#58677D"
+                   HorizontalOptions="Center" />
+                <Label HeightRequest="20"></Label>
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
 
 
     <Shell.Resources>
@@ -95,7 +112,7 @@
  
 
     <FlyoutItem Title="Home" Icon="icon_about.png">
-        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
     </FlyoutItem>
     <FlyoutItem Title="History">
         <ShellContent ContentTemplate="{DataTemplate local:HistoryPage}" Route="HistoryPage" />

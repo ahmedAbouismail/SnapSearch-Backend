@@ -30,8 +30,6 @@ namespace Snapsearch.Views
 
         // private string for saving the picked image
         private string _photoPath;
-        
-
 
         /// <summary>
         ///     event handler for capturing photo button
@@ -53,6 +51,10 @@ namespace Snapsearch.Views
                     // read captured photo
                     var stream = await result.OpenReadAsync();
 
+                    LogoImageSvgGrid.IsVisible = false;
+                    GenericImageSvgGrid.IsVisible = false;
+                    HintLabel.IsVisible = false;
+
                     // show image on screen
                     PickedImage.Source = ImageSource.FromStream(() => stream);
                 }
@@ -66,90 +68,46 @@ namespace Snapsearch.Views
                 // send Image source to ResultsPageViewModel
                 ResultsPageViewModel.PhotoPath = _photoPath;
 
-                // boot up CbirApiServices
-                var content = new CbirApiServices();
-
-                // run task of...
-                await Task.Run(async () =>
+                // if there is no internet access...
+                if (Connectivity.NetworkAccess != NetworkAccess.Internet)
                 {
+                    // display alert message
+                    await DisplayAlert("No Internet", "Check your connection", "OK");
+                    return;
+                }
+                // else...
+                else
+                {
+                    PostRequestProgressBar.IsVisible = true;
+                    await PostRequestProgressBar.ProgressTo(0.10, 100, Easing.Linear);
+
+                    // boot up CbirApiServices
+                    var content = new CbirApiServices();
+
+                    await PostRequestProgressBar.ProgressTo(0.20, 500, Easing.Linear);
 
                     // CbirApiServices and get a dictionary from the result, save it to private variable
                     _postTaskResult = await content.PostRequestCbirResponseDictionaryAsync(result.FullPath); //async
 
-                });
+                    await PostRequestProgressBar.ProgressTo(0.90, 1000, Easing.Linear);
 
-                // if Post Request Status Code = Ok...
-                if ( content.CbirApiServicesStatusCode == HttpStatusCode.OK)
-                {
-                    // make Use Photo Button visible
-                    UsePhoto.IsVisible = true;
+                    // if Post Request Status Code = Ok...
+                    if (content.CbirApiServicesStatusCode == HttpStatusCode.OK)
+                    {
+                        // make Use Photo Button visible
+                        UsePhoto.IsVisible = true;
+                        UsePhotoButtonSvgGrid.IsVisible = false;
+
+                        PostRequestProgressBar.IsVisible = false;
+                    }
+                    // else display error
+                    else
+                    {
+                        await DisplayAlert("Connection Error", "Server seems to be offline... \nPlease try again later.", "OK");
+                        await Navigation.PopToRootAsync();
+                    }
                 }
 
-                #region code that is currently not used
-
-
-
-
-                //  ResultsPageViewModel.ResultImage.Source = ImageSource.FromStream(() => stream);
-
-                // Create Image (add data to the multiformdatacontent..)
-                //content.Add(new StreamContent(stream), "input_img", result.FileName);
-
-                // create new HttpClient
-                //var httpClient = new HttpClient();
-
-
-
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
-
-                // Post request with captured photo
-                //var response =
-                //  await httpClient.PostAsync(
-                //    "http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/5/", content);
-
-
-                //response.Content.Headers.Add(@"Content-Length", respon);
-                // response.Headers.Add("Request-Timeout", "10000");
-                // var client = new RestClient("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/11");
-
-                //client.Timeout = -1;
-                // add default header to the Rest client
-                //client.AddDefaultHeader( "Accept","application/json" );
-                //var request = new RestRequest(Method.POST);
-
-                //request.AddFile("input_img", result.FullPath);
-
-                //todo - fix following line of code
-                // if await ExecuteAsync => app crashes
-                //IRestResponse response = client.Execute(request);
-
-                //var response = await client.ExecuteAsync(request);
-                // write to dev StatusCode of server. 200 - Ok!
-                //Console.WriteLine(response.StatusCode.ToString());
-
-                //// if status code is OK...
-                //if (response.StatusCode == HttpStatusCode.OK)
-                //{
-                // reveal use photo button
-                // UsePhoto.IsVisible = true;
-
-                // create Json string
-                //var jsonString = await response.Content.ReadAsStringAsync();
-
-                //var jsonString = response.Content;
-
-
-                // deserialize Json string
-                //var cbirResult = CbirApiResultModel.FromJson(jsonString);
-
-                // for each key, value pair of cbirResult...
-                //foreach (var kvpCbir in cbirResult.Values)
-                //{
-                // add its "link" value to CbirLinksList in the Results Page View Model
-                //ResultsPageViewModel.CbirLinksList.Add(kvpCbir.Link.ToString());
-                //}}
-
-                #endregion
             }
         }
     
@@ -161,7 +119,7 @@ namespace Snapsearch.Views
         /// <param name="e"></param>
         public async void ImageButton_OnClicked(object sender, EventArgs e)
         {
-            //todo - check connectivity
+            
 
             // Open Gallery
             var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
@@ -173,6 +131,8 @@ namespace Snapsearch.Views
             // if an image was picked...
             if (result != null)
             {
+                LogoImageSvgGrid.IsVisible = false;
+                HintLabel.IsVisible = false;
 
                 // read the image data
                 var stream = await result.OpenReadAsync();
@@ -183,25 +143,52 @@ namespace Snapsearch.Views
                 // save image
                 await LoadPhotoAsync(result);
 
+                LogoImageSvgGrid.IsVisible = false;
+                GenericImageSvgGrid.IsVisible = false;
+                HintLabel.IsVisible = false;
+
                 // pass image to ResultsPageViewModel
                 ResultsPageViewModel.PhotoPath = _photoPath;
 
-                // boot up CbirApiServices
-                var content = new CbirApiServices();
-
-                // run task of...
-                await Task.Run(async () =>
+                // if there is no internet access...
+                if (Connectivity.NetworkAccess != NetworkAccess.Internet)
                 {
+                    // display alert message
+                    await DisplayAlert("No Internet", "Check your connection", "OK");
+                    return;
+                }
+                // else...
+                else
+                {
+                    // boot up CbirApiServices
+                    var content = new CbirApiServices();
+
+                    PostRequestProgressBar.IsVisible = true;
+
+                    await PostRequestProgressBar.ProgressTo(0.10, 500, Easing.Linear);
+
                     // CbirApiServices and get a dictionary from the result, save it to private variable
                     _postTaskResult = await content.PostRequestCbirResponseDictionaryAsync(result.FullPath); //async
 
-                });
+                    await PostRequestProgressBar.ProgressTo(0.90, 1000, Easing.Linear);
 
-                // if Post Request Status Code = Ok...
-                if (content.CbirApiServicesStatusCode == HttpStatusCode.OK)
-                {
-                    // make Use Photo Button visible
-                    UsePhoto.IsVisible = true;
+                    // if Post Request Status Code = Ok...
+                    if (content.CbirApiServicesStatusCode == HttpStatusCode.OK)
+                    {
+                        await PostRequestProgressBar.ProgressTo(1, 1, Easing.Linear);
+
+                        // make Use Photo Button visible
+                        UsePhoto.IsVisible = true;
+                        UsePhotoButtonSvgGrid.IsVisible = false;
+
+                        PostRequestProgressBar.IsVisible = false;
+                    }
+                    // else display error
+                    else
+                    {
+                        await DisplayAlert("Connection Error", "Server seems to be offline... \nPlease try again later.", "OK");
+                        await Navigation.PopToRootAsync();
+                    }
                 }
 
                 #region code that is currently not used
@@ -281,6 +268,42 @@ namespace Snapsearch.Views
 
             _photoPath = newFile;
 
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            UsePhoto.IsVisible = false;
+            UsePhotoButtonSvgGrid.IsVisible = false;
+
+            PostRequestProgressBar.IsVisible = false;
+
+            Connectivity.ConnectivityChanged += Connectivity_ChangedEvent;
+
+            LogoImageSvgGrid.IsVisible = true;
+            GenericImageSvgGrid.IsVisible = true;
+            HintLabel.IsVisible = true;
+
+        }
+
+        private void Connectivity_ChangedEvent(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.NetworkAccess == NetworkAccess.Internet)
+            {
+                NoConnectionLabel.FadeTo(0).ContinueWith((result) => { });
+            }
+            else
+            {
+                NoConnectionLabel.FadeTo(1).ContinueWith((result) => { });
+            }
+        }
+
+        protected async override void  OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            Connectivity.ConnectivityChanged -= Connectivity_ChangedEvent;
         }
     }
 }

@@ -89,7 +89,7 @@ namespace Snapsearch.Services
                 var cbirResult = CbirApiResponseModel.FromJson(jsonString);
 
                 // return dictionary of CbirApiResponseModels
-                return await Task.FromResult(cbirResult);
+                return cbirResult;
 
             }
             catch (Exception e)
