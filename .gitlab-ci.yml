@@ -9,9 +9,12 @@ test_and_build:
    - Runner
   script:
     
-    - docker login $CI_REGISTRY -u "$CI_REGISTRY_PASSWORD" -p "$CI_REGISTRY_PASSWORD"
+    #- docker login $CI_REGISTRY -u "$CI_REGISTRY_PASSWORD" -p "$CI_REGISTRY_PASSWORD"
+    - docker login gitlab.rz.htw-berlin.de:5050 
     - cd snap_search/backend/image_embeddings
-    - docker build -t $CI_REGISTRY_IMAGE .
-    - docker push  $CI_REGISTRY_IMAGE
+    - docker build -t gitlab.rz.htw-berlin.de:5050/softwareentwicklungsprojekt/wise2020-21/team9 .
+    #- docker build -t $CI_REGISTRY_IMAGE .
+    - docker push gitlab.rz.htw-berlin.de:5050/softwareentwicklungsprojekt/wise2020-21/team9
+    #- docker push  $CI_REGISTRY_IMAGE
 
 
