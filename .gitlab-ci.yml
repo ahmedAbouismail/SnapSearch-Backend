@@ -17,7 +17,7 @@ test_and_build:
    - Linux 
    - Runner
   before_script:
-   - docker login gitlab.rz.htw-berlin.de:5050 -u $GITLAB_USERNAME -p "$GITLAB_PASSWORD"
+   - echo "$GITLAB_PASSWORD" | docker login gitlab.rz.htw-berlin.de:5050 --username $GITLAB_USERNAME --password-stdin
   script:
     
     #- docker login $CI_REGISTRY -u "$CI_REGISTRY_PASSWORD" -p "$CI_REGISTRY_PASSWORD"
