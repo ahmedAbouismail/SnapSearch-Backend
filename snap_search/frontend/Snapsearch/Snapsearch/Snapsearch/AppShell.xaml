@@ -126,9 +126,9 @@
     <FlyoutItem Title="License">
         <ShellContent ContentTemplate="{DataTemplate local:LicensePage}" Route="LicensePage" />
     </FlyoutItem>
-    <FlyoutItem Title="Items Page">
+    <!--<FlyoutItem Title="Items Page">
         <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" Route="ItemsPage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
 
 
     <!--  When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
