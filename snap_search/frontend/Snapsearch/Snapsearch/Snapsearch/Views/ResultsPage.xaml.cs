@@ -43,7 +43,7 @@ namespace Snapsearch.Views
             //Logo Image
             Rectangle logoRect = new Rectangle(
                 x: width / 2 - LogoImage.Width / 2,
-                y: Margin,
+                y: 1,
                 width: 100,
                 height: 30);
             AbsoluteLayout.SetLayoutBounds(LogoImage, logoRect);

@@ -23,6 +23,8 @@ namespace Snapsearch.Views
         {
             InitializeComponent();
 
+            PickedImage.Source = PhotoPath;
+
         }
 
         // private dictionary for results of Post request
@@ -30,6 +32,7 @@ namespace Snapsearch.Views
 
         // private string for saving the picked image
         private string _photoPath;
+        public static string PhotoPath;
 
         /// <summary>
         ///     event handler for capturing photo button
@@ -39,7 +42,7 @@ namespace Snapsearch.Views
         private async void TakePhoto_OnClicked(object sender, EventArgs e)
         {
             //todo - ask "does phone have a camera?" !Important!
-            //todo - check connectivity
+
             // wait result of captured photo
             var result = await MediaPicker.CapturePhotoAsync();
 
@@ -96,7 +99,7 @@ namespace Snapsearch.Views
                     {
                         // make Use Photo Button visible
                         UsePhoto.IsVisible = true;
-                        UsePhotoButtonSvgGrid.IsVisible = false;
+                        UsePhotoButtonSvgGrid.IsVisible = true;
 
                         PostRequestProgressBar.IsVisible = false;
                     }
@@ -179,7 +182,7 @@ namespace Snapsearch.Views
 
                         // make Use Photo Button visible
                         UsePhoto.IsVisible = true;
-                        UsePhotoButtonSvgGrid.IsVisible = false;
+                        UsePhotoButtonSvgGrid.IsVisible = true;
 
                         PostRequestProgressBar.IsVisible = false;
                     }
@@ -261,14 +264,15 @@ namespace Snapsearch.Views
             if(photo == null) { return; }
 
             //save file into local storage
-            var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+            var newFile = Path.Combine(FileSystem.AppDataDirectory, photo.FileName);
             using (var stream = await photo.OpenReadAsync())
             using (var newStream = File.OpenWrite(newFile))
                 await stream.CopyToAsync(newStream);
 
             _photoPath = newFile;
 
-        }
+            MockDataStore.HistoryItemList.Add(_photoPath);
+        }   
 
         protected async override void OnAppearing()
         {
