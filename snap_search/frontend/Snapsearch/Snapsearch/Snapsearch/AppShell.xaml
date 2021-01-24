@@ -4,7 +4,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Snapsearch.Views"
-    FlyoutIcon="snapsearch_logo_icon">
+    
+    FlyoutBackdrop="Transparent"
+    FlyoutWidth="250"
+    >
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -12,6 +15,20 @@
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <StackLayout>
+                <Label Text="Snapsearch"
+                   TextColor="#58677D"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+                <Label Text="Release Build v.0.0.01"
+                   TextColor="#58677D"
+                   HorizontalOptions="Center" />
+                <Label HeightRequest="20"></Label>
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
 
 
     <Shell.Resources>
@@ -92,8 +109,10 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
+ 
+
     <FlyoutItem Title="Home" Icon="icon_about.png">
-        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
     </FlyoutItem>
     <FlyoutItem Title="History">
         <ShellContent ContentTemplate="{DataTemplate local:HistoryPage}" Route="HistoryPage" />
@@ -107,11 +126,9 @@
     <FlyoutItem Title="License">
         <ShellContent ContentTemplate="{DataTemplate local:LicensePage}" Route="LicensePage" />
     </FlyoutItem>
-    <FlyoutItem Title="Browse" Icon="icon_feed.png">
-        <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" Route="ItemsPage" />
-    </FlyoutItem>
 
-    <!--  When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
+
+        <!--  When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <!--<MenuItem
         Clicked="OnMenuItemClicked"
         StyleClass="MenuItemLayoutStyle"

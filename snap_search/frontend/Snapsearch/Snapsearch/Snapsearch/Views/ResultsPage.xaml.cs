@@ -1,5 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using Snapsearch.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net.Http;
 
 namespace Snapsearch.Views
 {
@@ -10,7 +12,7 @@ namespace Snapsearch.Views
         {
             InitializeComponent();
 
-
+            PickedImage.Source = ResultsPageViewModel.PhotoPath;
 
         }
 
@@ -27,32 +29,35 @@ namespace Snapsearch.Views
 
         //    SizeChanged -= MainPage_SizeChanged;
 
-
+       
         //}
 
-        private const int Margin = 20;
+        private const int Margin = 10;
 
         protected override void OnSizeAllocated(double width, double height)
         {
+            
             base.OnSizeAllocated(width, height);
 
             // set the position of all the screen elements
-
             //Logo Image
             Rectangle logoRect = new Rectangle(
                 x: width / 2 - LogoImage.Width / 2,
                 y: Margin,
-                width: LogoImage.Width,
-                height: LogoImage.Height);
+                width: 100,
+                height: 30);
             AbsoluteLayout.SetLayoutBounds(LogoImage, logoRect);
 
-            //Generic Image
+            // Generic Image
             Rectangle genericImageRect = new Rectangle(
                 x: width / 2 - GenericImage.Width / 2,
                 y: 2 * Margin + logoRect.Height,
-                width: GenericImage.Width,
-                height: GenericImage.Height);
+                width: 150,
+                height: 150);
             AbsoluteLayout.SetLayoutBounds(GenericImage, genericImageRect);
+
+            // Picked Image
+            AbsoluteLayout.SetLayoutBounds(PickedImage, genericImageRect);
 
             // Text Label 
             Rectangle textLabelRect = new Rectangle(
@@ -69,6 +74,14 @@ namespace Snapsearch.Views
                 width: width - (2 * Margin),
                 height: height - (TextLabel.Bounds.Bottom + Margin));
             AbsoluteLayout.SetLayoutBounds(ScrollContainer, scrollContainerRect);
+
+            // Scroll Container
+            Rectangle flexLayoutContainerRect = new Rectangle(
+                x: width / 2 - ScrollContainer.Width / 2,
+                y: 4 * Margin + logoRect.Height + genericImageRect.Height + textLabelRect.Height,
+                width: width - (2 * Margin),
+                height: height - (TextLabel.Bounds.Bottom + Margin));
+            AbsoluteLayout.SetLayoutBounds(ResultFlexLayout, scrollContainerRect);
 
 
         }

@@ -1,6 +1,4 @@
 from dataclasses import dataclass
-from IPython.display import Image, display
-from ipywidgets import widgets, HBox, VBox
 from pathlib import Path
 import faiss
 import numpy as np
@@ -47,47 +45,25 @@ def get_results(path=embeddings_output, k=10):
             p = key
     res = search(index, id_to_name, embeddings[p], k)
     results = {}
-    currentDir = os.path.dirname(__file__)
 
     for score, image_id in res:
         if str(image_id) == name:
             d = {     
                 str(image_id): {
                     'score': "{:.3f}".format(float(score)),
-                    'link': os.path.abspath(os.path.join(currentDir,f"../../system_files/tf_input_image/{str(image_id)}.jpeg"))
+                    'link': f"https://snapdb.blob.core.windows.net/snapdb/{str(image_id)}.jpeg"
                 }
             }
         else:
             d = {     
                 str(image_id): {
                     'score': "{:.3f}".format(float(score)),
-                    'link': os.path.abspath(os.path.join(currentDir,f"../../system_files/tf_flower_images/{str(image_id)}.jpeg"))
+                    'link': f"https://snapdb.blob.core.windows.net/snapdb/{str(image_id)}.jpeg"
                 }
             }    
         
         results.update(d)  
     return json.dumps(results, indent=2)  
-
-def write_to_db():
-    [_, name_to_id, _] = read_embeddings('system_files/tf_flower_embeddings')
-    database = {}
-    currentDir = os.path.dirname(__file__)
-
-    name_ = list(name_to_id.keys())
-    id_ = list(name_to_id.values())
-    
-    for id, name in zip(id_,name_):
-        d = {
-            name:{
-                "image_id" : id,
-                "link": os.path.abspath(os.path.join(currentDir,f"../../system_files/tf_flower_images/{str(name)}.jpeg"))
-            }
-        }
-        database.update(d)
-        
-    return  database
-
-
 
 
 def search(index, id_to_name, emb, k):

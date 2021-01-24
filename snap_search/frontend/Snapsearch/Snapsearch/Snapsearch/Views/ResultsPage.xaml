@@ -20,7 +20,8 @@
                 BackgroundColor="Transparent"
                 Source="snapsearch_logo" />
             <!--  The image that was searched  -->
-            <Image x:Name="GenericImage" Source="snapsearch_image_generic" />
+            <Image x:Name="GenericImage"/>
+            <Image x:Name="PickedImage"/>
             <!--  Text for informing the user with the amount of search results  -->
             <Label x:Name="TextLabel" Text="We found 10 images" />
             <ScrollView
@@ -28,38 +29,35 @@
                 AbsoluteLayout.LayoutBounds="20, 220, 350, 400"
                 BackgroundColor="Transparent">
                 <Grid>
-                    <Frame x:Name="BottomGradient">
-                        <Frame.Background>
-                            <!--  StartPoint defaults to (0,0)  -->
-                            <LinearGradientBrush EndPoint="0,1">
-                                <GradientStop Offset="0.1" Color="Transparent" />
-                                <GradientStop Offset="1.0" Color="Gray" />
-                            </LinearGradientBrush>
-                        </Frame.Background>
-                    </Frame>
+
                     <FlexLayout
+                        x:Name="ResultFlexLayout"
                         BindableLayout.ItemsSource="{Binding Images}"
                         Direction="Row"
-                        HeightRequest="1180"
+                        HeightRequest="1020"
                         JustifyContent="SpaceAround"
                         WidthRequest="500"
                         Wrap="Wrap">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <pancakeView:PancakeView
-                                    Margin="10"
+                                    Margin="3"
                                     BackgroundColor="White"
                                     CornerRadius="10"
-                                    HeightRequest="160"
+                                    HeightRequest="200"
                                     VerticalOptions="Center"
-                                    WidthRequest="160">
+                                    WidthRequest="170">
                                     <Grid>
+                                        <!--    -->
                                         <Image
                                             x:Name="ProductImage"
+                                            Margin="3"
+                                            HeightRequest="200"
                                             HorizontalOptions="Center"
                                             InputTransparent="True"
                                             Source="{Binding ImageUrl}"
-                                            VerticalOptions="Start" />
+                                            VerticalOptions="Start"
+                                            WidthRequest="170" />
                                         <StackLayout>
                                             <Label
                                                 Margin="20,120"

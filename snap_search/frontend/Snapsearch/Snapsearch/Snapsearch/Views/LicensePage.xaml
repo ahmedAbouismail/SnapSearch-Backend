@@ -5,18 +5,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, *">
-            <Label
+        <ScrollView>
+        <Grid RowDefinitions="Auto, *,1,*">
+            
+            <Label Grid.Row="0"
                 x:Name="LicenseTitle"
                 FontSize="Title"
                 HorizontalOptions="Center"
                 Text="License" />
-            <ScrollView Grid.Row="1">
-                <Label
+
+                <Label Grid.Row="1"
+                       Margin="10,10,10,10"
                     x:Name="LicenseText"
                     HorizontalOptions="Center"
-                    Text="" />
-            </ScrollView>
+                    LineBreakMode="WordWrap"
+                       HorizontalTextAlignment="Center"
+                      TextColor="#58677D"
+                    />
+               
+                <BoxView 
+                    Grid.Row="2"
+            HeightRequest="1" 
+                    WidthRequest="300"
+            BackgroundColor="#58677D" 
+            HorizontalOptions="Center" />
+                
+
+                <Label Grid.Row="3"
+                       Margin="10,10,10,10"
+                    x:Name="XamarinLicenseText"
+                    HorizontalOptions="Center"
+                    LineBreakMode="WordWrap"
+                     HorizontalTextAlignment="Center"
+                    TextColor="#58677D"
+                    />
+
         </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

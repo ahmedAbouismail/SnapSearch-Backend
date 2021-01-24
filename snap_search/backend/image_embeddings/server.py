@@ -1,7 +1,7 @@
 from image_embeddings.inference import write_tfrecord
 from image_embeddings.inference import run_inference
 from image_embeddings.knn import get_results
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from PIL import Image 
 import os
 import io
@@ -10,6 +10,9 @@ import io
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def root():
+    return render_template('index.html')
 
 @app.route('/uploadimage/<int:result_num>', methods=['POST'])
 def process_image(result_num):
@@ -36,4 +39,4 @@ def create_records():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0" ,port=5000) 
+    app.run(debug=True, host="0.0.0.0" ,port=80) 
