@@ -39,25 +39,43 @@ namespace Snapsearch.Views
             
             base.OnSizeAllocated(width, height);
 
+            //Rectangle gradientRect = new Rectangle(
+            //    x: 1,
+            //    y: 1,
+            //    width: width,
+            //    height: height);
+            //AbsoluteLayout.SetLayoutBounds(BottomGradient, gradientRect);
+
+            BottomGradient.HeightRequest = height;
+            BottomGradient.WidthRequest = width;
+
             // set the position of all the screen elements
             //Logo Image
             Rectangle logoRect = new Rectangle(
                 x: width / 2 - LogoImage.Width / 2,
                 y: 1,
-                width: 100,
-                height: 30);
+                width: 0,
+                height: 0);
             AbsoluteLayout.SetLayoutBounds(LogoImage, logoRect);
 
             // Generic Image
             Rectangle genericImageRect = new Rectangle(
                 x: width / 2 - GenericImage.Width / 2,
                 y: 2 * Margin + logoRect.Height,
-                width: 150,
-                height: 150);
+                width: 160,
+                height: 160);
             AbsoluteLayout.SetLayoutBounds(GenericImage, genericImageRect);
 
             // Picked Image
             AbsoluteLayout.SetLayoutBounds(PickedImage, genericImageRect);
+
+            // Generic Image
+            Rectangle genericImageFrameRect = new Rectangle(
+                x: width / 2 - 170 / 2,
+                y: 2 * Margin + logoRect.Height - 10,
+                width: 170,
+                height: 170);
+            AbsoluteLayout.SetLayoutBounds(PickedImageFrame, genericImageFrameRect);
 
             // Text Label 
             Rectangle textLabelRect = new Rectangle(

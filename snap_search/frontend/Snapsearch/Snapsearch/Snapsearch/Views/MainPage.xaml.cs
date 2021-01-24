@@ -25,6 +25,11 @@ namespace Snapsearch.Views
 
             LogoSvgGrid.TranslationX = (width - 231) / 2;
             SnapsearchImageSvgGrid.TranslationX = (width - 318) / 2;
+
+            GradientFrame.HeightRequest = height;
+            GradientFrame.WidthRequest = width;
+
+            LittleFrame.HeightRequest = 300;
         }
 
         private async void StartSearchingButton_OnClicked(object sender, EventArgs e)

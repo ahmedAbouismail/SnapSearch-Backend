@@ -23,7 +23,7 @@ namespace Snapsearch.Views
         {
             InitializeComponent();
 
-            PickedImage.Source = PhotoPath;
+            
 
         }
 
@@ -41,7 +41,6 @@ namespace Snapsearch.Views
         /// <param name="e"></param>
         private async void TakePhoto_OnClicked(object sender, EventArgs e)
         {
-            //todo - ask "does phone have a camera?" !Important!
 
             // wait result of captured photo
             var result = await MediaPicker.CapturePhotoAsync();
@@ -53,13 +52,25 @@ namespace Snapsearch.Views
                 {
                     // read captured photo
                     var stream = await result.OpenReadAsync();
+                    
+                    
 
-                    LogoImageSvgGrid.IsVisible = false;
+                    //LogoImageSvgGrid.IsVisible = false;
                     GenericImageSvgGrid.IsVisible = false;
                     HintLabel.IsVisible = false;
 
                     // show image on screen
-                    PickedImage.Source = ImageSource.FromStream(() => stream);
+                    //PickedImage.Source = ImageSource.FromStream(() => stream);
+                    PickedImageFrame.Content = new Image
+                    {
+                        Source = ImageSource.FromStream(() => stream),
+                        Aspect = Aspect.AspectFill,
+
+                    };
+
+                    PickedImageFrame.IsVisible = true;
+                    PickedImageHintLabel.IsVisible = true;
+                    ContinueHintLabel.IsVisible = true;
                 }
                 catch (Exception ex)
                 {
@@ -76,7 +87,7 @@ namespace Snapsearch.Views
                 {
                     // display alert message
                     await DisplayAlert("No Internet", "Check your connection", "OK");
-                    return;
+                    await Navigation.PopToRootAsync();
                 }
                 // else...
                 else
@@ -134,19 +145,29 @@ namespace Snapsearch.Views
             // if an image was picked...
             if (result != null)
             {
-                LogoImageSvgGrid.IsVisible = false;
+                //LogoImageSvgGrid.IsVisible = false;
                 HintLabel.IsVisible = false;
 
                 // read the image data
                 var stream = await result.OpenReadAsync();
 
-                    // show image on screen
-                    PickedImage.Source = ImageSource.FromStream(() => stream);
+                // show image on screen
+                //PickedImage.Source = ImageSource.FromStream(() => stream);
+                PickedImageFrame.Content = new Image
+                {
+                    Source = ImageSource.FromStream(() => stream),
+                    Aspect = Aspect.AspectFill,
+
+                };
+
+                PickedImageFrame.IsVisible = true;
+                PickedImageHintLabel.IsVisible = true;
+                ContinueHintLabel.IsVisible = true;
 
                 // save image
                 await LoadPhotoAsync(result);
 
-                LogoImageSvgGrid.IsVisible = false;
+                
                 GenericImageSvgGrid.IsVisible = false;
                 HintLabel.IsVisible = false;
 
@@ -278,6 +299,10 @@ namespace Snapsearch.Views
         {
             base.OnAppearing();
 
+            PickedImageFrame.IsVisible = false;
+            PickedImageHintLabel.IsVisible = false;
+            ContinueHintLabel.IsVisible = false;
+
             UsePhoto.IsVisible = false;
             UsePhotoButtonSvgGrid.IsVisible = false;
 
@@ -308,6 +333,8 @@ namespace Snapsearch.Views
             base.OnDisappearing();
 
             Connectivity.ConnectivityChanged -= Connectivity_ChangedEvent;
+            PickedImageFrame.IsVisible = false;
+            PickedImage.IsVisible = false;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Snapsearch.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,14 +13,17 @@ namespace Snapsearch.Views
     public partial class HistoryPage : ContentPage
     {
         public ObservableCollection<HistoryItem> HistoryItems { get; } = new ObservableCollection<HistoryItem>();
-        //readonly List<Item> items;
+
+
         public HistoryPage()
         {
             InitializeComponent();
 
+            
+
             BindingContext = this;
 
-
+            
         }
         protected async override void OnAppearing()
         {
@@ -28,18 +33,26 @@ namespace Snapsearch.Views
 
             var rootDirectory = FileSystem.AppDataDirectory;
 
-            //items = new List<Item>();
-
             foreach (var file in System.IO.Directory.GetFiles(rootDirectory))
             {
+                var dateCreated = System.IO.Directory.GetCreationTime(file);
+                
                 HistoryItems.Add(new HistoryItem
                 {
-                    Path = file
-                });
+                    Path = file,
+                    DateCreated = dateCreated.ToString()
+                }) ;
             }
 
         }
 
+        private async void CollectionHistoryItem_Clicked(object sender, EventArgs e)
+        {
 
+            
+
+
+
+        }
     }
 }
