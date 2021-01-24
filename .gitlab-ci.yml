@@ -1,7 +1,7 @@
 
 image:  delphairegistry/dind-az-kctl-helm:v1.6
 
-test:
+test:image_embeddings:
   stage: test
   tags:
    - linux 
@@ -13,7 +13,7 @@ test:
    - pip3 install -r requirements.txt
    - python3 image_embeddings/knn/test_knn.py
   
-build:
+build:image_embeddings:
   stage: build
   tags:
    - linux 
@@ -23,5 +23,5 @@ build:
     - docker build -t $CI_REGISTRY_IMAGE snap_search/backend/image_embeddings
     - docker push  $CI_REGISTRY_IMAGE
   dependencies:
-    - test
+    - test:image_embeddings
 
