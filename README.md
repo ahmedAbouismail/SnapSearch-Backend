@@ -84,6 +84,34 @@ pyhton test_inference.py
 a-the first run to create the tf_output file and write the data.
 b- the seconde run to read the data from tf_output and write it in the embeddings_output.
 ```
+
+## Unittest for knn.py
+
+-To run the Unittest of the knn.py run the following command 
+```bash
+python3 run team9/snap_search/backend/image_embeddings/image_embeddings/inference/test_inference.py
+```
+
+## Online Resources 
+
+- Online Server:
+```bash
+http://137.117.141.110/
+```
+- Docker registry:
+```bash
+abudimo/snapsearch
+```
+- Azure registry:
+```bash
+snapsearch.azurecr.io
+```
+- Database Base link:
+- Azure registry:
+```bash
+https://snapdb.blob.core.windows.net/snapdb/<image_name>
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
