@@ -92,6 +92,8 @@ b- the seconde run to read the data from tf_output and write it in the embedding
 python3 run team9/snap_search/backend/image_embeddings/image_embeddings/inference/test_inference.py
 ```
 
+# Sprint 3
+
 ## Online Resources 
 
 - Online Server:
@@ -107,7 +109,6 @@ abudimo/snapsearch
 snapsearch.azurecr.io
 ```
 - Database Base link:
-- Azure registry:
 ```bash
 https://snapdb.blob.core.windows.net/snapdb/<image_name>
 ```
