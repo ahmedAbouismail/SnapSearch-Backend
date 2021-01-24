@@ -14,7 +14,7 @@ import os
 ***important:
 
     1- make sure that you changed the paths to the paths where the files are saved on ur computer.
-    2- run the test twice to get the right result.
+    2- run the test twice to get the right result
         a- the first time to create the tf_output file and write the data.
         b- the seconde time to read the data from tf_output and write it in the embeddings_output.
 """
