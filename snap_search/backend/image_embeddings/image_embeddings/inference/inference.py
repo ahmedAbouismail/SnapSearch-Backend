@@ -6,7 +6,7 @@ import pyarrow.parquet as pq
 import pyarrow as pa
 from pathlib import Path
 import os
-<<<<<<< HEAD
+
 
 
 
@@ -18,7 +18,7 @@ database_folder = os.path.abspath(os.path.join(currentDir, "../../system_files/t
 # input_image_folder = 'system_files/tf_input_image'
 # tf_output = 'system_files/tf_flower_tf_records'
 # embeddings_output = 'system_files/tf_flower_embeddings'
-=======
+
 
 currentDir = os.path.dirname(__file__)
 tf_output = os.path.abspath(os.path.join(currentDir,"../../system_files/tf_flower_tf_records"))
@@ -26,7 +26,7 @@ embeddings_output = os.path.abspath(os.path.join(currentDir,"../../system_files/
 database_folder = os.path.abspath(os.path.join(currentDir,"../../system_files/tf_flower_images"))
 input_image_folder = os.path.abspath(os.path.join(currentDir,"../../system_files/tf_input_image"))
 
->>>>>>> ccf521eb3cc5b646639dbfc3a12c5eeb21b4d0fd
+
 
 def _int64_feature(value):
     """Returns an int64_list from a bool / enum / int / uint."""
