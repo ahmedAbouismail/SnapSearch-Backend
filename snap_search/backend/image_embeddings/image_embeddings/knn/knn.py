@@ -1,6 +1,4 @@
 from dataclasses import dataclass
-from IPython.display import Image, display
-from ipywidgets import widgets, HBox, VBox
 from pathlib import Path
 import faiss
 import numpy as np
