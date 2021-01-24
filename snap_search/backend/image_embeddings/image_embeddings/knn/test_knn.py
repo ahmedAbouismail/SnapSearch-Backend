@@ -29,7 +29,7 @@ class TestKnn(unittest.TestCase):
         results = knn.read_embeddings(embeddings_output)
         index = results
         self.assertIsNotNone(results)
-        
+    
     def test_build_index(self):
         [id_to_name, _, embeddings] = knn.read_embeddings(embeddings_output)
         results = knn.build_index(embeddings)
@@ -40,4 +40,12 @@ class TestKnn(unittest.TestCase):
         self.assertIsNotNone(results)
 
 if __name__ == '__main__':
-    unittest.main()
+    suite=unittest.TestSuite()
+    suite.addTest(TestKnn("test_read_embeddings"))
+    suite.addTest(TestKnn("test_build_index"))
+    suite.addTest(TestKnn("test_get_results"))
+    result = unittest.TextTestRunner(verbosity=2).run(suite)
+    if result.wasSuccessful():
+        exit(0)
+    else:
+        exit(1)
