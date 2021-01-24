@@ -9,8 +9,8 @@ test:image_embeddings:
   script: 
    - set -e
    - cd snap_search/backend/image_embeddings
-   - pipenv lock -r requirements.txt
-   - pip3 install -r requirements.txt
+   - pipenv lock -r > requirements.txt
+   - pip install -r requirements.txt
    - python3 image_embeddings/knn/test_knn.py
   
 build:image_embeddings:
@@ -21,4 +21,7 @@ build:image_embeddings:
     - docker login $CI_REGISTRY -u $CI_USERNAME -p $CI_REGISTRY_PASSWORD
     - docker build -t $CI_REGISTRY_IMAGE snap_search/backend/image_embeddings
     - docker push  $CI_REGISTRY_IMAGE
+  dependencies:
+    - test:image_embeddings
+
 
