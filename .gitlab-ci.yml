@@ -13,7 +13,7 @@ test:image_embeddings:
    - set -e
    - cd snap_search/backend/image_embeddings
    - pipenv lock -r > requirements.txt
-   - pip install -r requirements.txt
+   - pip3 install -r requirements.txt
    - python3 image_embeddings/knn/test_knn.py
   
 build:image_embeddings:
