@@ -23,6 +23,8 @@ namespace Snapsearch.Views
         {
             InitializeComponent();
 
+            
+
         }
 
         // private dictionary for results of Post request
@@ -30,6 +32,7 @@ namespace Snapsearch.Views
 
         // private string for saving the picked image
         private string _photoPath;
+        public static string PhotoPath;
 
         /// <summary>
         ///     event handler for capturing photo button
@@ -38,8 +41,7 @@ namespace Snapsearch.Views
         /// <param name="e"></param>
         private async void TakePhoto_OnClicked(object sender, EventArgs e)
         {
-            //todo - ask "does phone have a camera?" !Important!
-            //todo - check connectivity
+
             // wait result of captured photo
             var result = await MediaPicker.CapturePhotoAsync();
 
@@ -50,13 +52,25 @@ namespace Snapsearch.Views
                 {
                     // read captured photo
                     var stream = await result.OpenReadAsync();
+                    
+                    
 
-                    LogoImageSvgGrid.IsVisible = false;
+                    //LogoImageSvgGrid.IsVisible = false;
                     GenericImageSvgGrid.IsVisible = false;
                     HintLabel.IsVisible = false;
 
                     // show image on screen
-                    PickedImage.Source = ImageSource.FromStream(() => stream);
+                    //PickedImage.Source = ImageSource.FromStream(() => stream);
+                    PickedImageFrame.Content = new Image
+                    {
+                        Source = ImageSource.FromStream(() => stream),
+                        Aspect = Aspect.AspectFill,
+
+                    };
+
+                    PickedImageFrame.IsVisible = true;
+                    PickedImageHintLabel.IsVisible = true;
+                    ContinueHintLabel.IsVisible = true;
                 }
                 catch (Exception ex)
                 {
@@ -73,7 +87,7 @@ namespace Snapsearch.Views
                 {
                     // display alert message
                     await DisplayAlert("No Internet", "Check your connection", "OK");
-                    return;
+                    await Navigation.PopToRootAsync();
                 }
                 // else...
                 else
@@ -96,7 +110,7 @@ namespace Snapsearch.Views
                     {
                         // make Use Photo Button visible
                         UsePhoto.IsVisible = true;
-                        UsePhotoButtonSvgGrid.IsVisible = false;
+                        UsePhotoButtonSvgGrid.IsVisible = true;
 
                         PostRequestProgressBar.IsVisible = false;
                     }
@@ -131,19 +145,29 @@ namespace Snapsearch.Views
             // if an image was picked...
             if (result != null)
             {
-                LogoImageSvgGrid.IsVisible = false;
+                //LogoImageSvgGrid.IsVisible = false;
                 HintLabel.IsVisible = false;
 
                 // read the image data
                 var stream = await result.OpenReadAsync();
 
-                    // show image on screen
-                    PickedImage.Source = ImageSource.FromStream(() => stream);
+                // show image on screen
+                //PickedImage.Source = ImageSource.FromStream(() => stream);
+                PickedImageFrame.Content = new Image
+                {
+                    Source = ImageSource.FromStream(() => stream),
+                    Aspect = Aspect.AspectFill,
+
+                };
+
+                PickedImageFrame.IsVisible = true;
+                PickedImageHintLabel.IsVisible = true;
+                ContinueHintLabel.IsVisible = true;
 
                 // save image
                 await LoadPhotoAsync(result);
 
-                LogoImageSvgGrid.IsVisible = false;
+                
                 GenericImageSvgGrid.IsVisible = false;
                 HintLabel.IsVisible = false;
 
@@ -179,7 +203,7 @@ namespace Snapsearch.Views
 
                         // make Use Photo Button visible
                         UsePhoto.IsVisible = true;
-                        UsePhotoButtonSvgGrid.IsVisible = false;
+                        UsePhotoButtonSvgGrid.IsVisible = true;
 
                         PostRequestProgressBar.IsVisible = false;
                     }
@@ -261,18 +285,23 @@ namespace Snapsearch.Views
             if(photo == null) { return; }
 
             //save file into local storage
-            var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+            var newFile = Path.Combine(FileSystem.AppDataDirectory, photo.FileName);
             using (var stream = await photo.OpenReadAsync())
             using (var newStream = File.OpenWrite(newFile))
                 await stream.CopyToAsync(newStream);
 
             _photoPath = newFile;
 
-        }
+            MockDataStore.HistoryItemList.Add(_photoPath);
+        }   
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+
+            PickedImageFrame.IsVisible = false;
+            PickedImageHintLabel.IsVisible = false;
+            ContinueHintLabel.IsVisible = false;
 
             UsePhoto.IsVisible = false;
             UsePhotoButtonSvgGrid.IsVisible = false;
@@ -304,6 +333,8 @@ namespace Snapsearch.Views
             base.OnDisappearing();
 
             Connectivity.ConnectivityChanged -= Connectivity_ChangedEvent;
+            PickedImageFrame.IsVisible = false;
+            PickedImage.IsVisible = false;
         }
     }
 }

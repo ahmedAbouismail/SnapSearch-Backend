@@ -35,7 +35,7 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="White" />
-                <Setter Property="Shell.ForegroundColor" Value="#58677D" />
+                <Setter Property="Shell.ForegroundColor" Value="GhostWhite" />
                 <Setter Property="Shell.TitleColor" Value="Transparent" />
                 
                 <Setter Property="Shell.NavBarHasShadow" Value="False" />
@@ -62,7 +62,7 @@
                 ApplyToDerivedTypes="True"
                 Class="FlyoutItemLayoutStyle"
                 TargetType="Layout">
-                <Setter Property="BackgroundColor" Value="LightBlue" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -126,9 +126,12 @@
     <FlyoutItem Title="License">
         <ShellContent ContentTemplate="{DataTemplate local:LicensePage}" Route="LicensePage" />
     </FlyoutItem>
+    <!--<FlyoutItem Title="Items Page">
+        <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" Route="ItemsPage" />
+    </FlyoutItem>-->
 
 
-        <!--  When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
+    <!--  When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <!--<MenuItem
         Clicked="OnMenuItemClicked"
         StyleClass="MenuItemLayoutStyle"

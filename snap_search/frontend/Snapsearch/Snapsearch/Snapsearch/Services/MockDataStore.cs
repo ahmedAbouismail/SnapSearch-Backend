@@ -1,8 +1,11 @@
-﻿using Snapsearch.Models;
+﻿using MvvmHelpers;
+using Snapsearch.Models;
+using Snapsearch.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace Snapsearch.Services
 {
@@ -10,18 +13,39 @@ namespace Snapsearch.Services
     {
         readonly List<Item> items;
 
+        public static IList<string> HistoryItemList = new List<string>(10);
+
+        //public IList<Item> items { get; set; }
+
         public MockDataStore()
         {
-            items = new List<Item>()
-            {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
-            };
-        }
+            //items = new List<Item>()
+            //{
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "First item", Description="This is an item description." },
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "Second item", Description="This is an item description." },
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "Third item", Description="This is an item description." },
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "Fourth item", Description="This is an item description." },
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "Fifth item", Description="This is an item description." },
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "Sixth item", Description="This is an item description." },
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "Sixth item", Description="This is an item description." },
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "Sixth item", Description="This is an item description." },
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "Sixth item", Description="This is an item description." },
+            //    new Item { Id = Guid.NewGuid().ToString(), Path = "Sixth item", Description="This is an item description." }
+            //};
+
+            var rootDirectory = FileSystem.AppDataDirectory;
+
+            items = new List<Item>();
+
+            //foreach (var file in System.IO.Directory.GetFiles(rootDirectory))
+            //{
+            //    items.Add(new Item
+            //    {
+            //        Path = file
+            //    });
+
+
+            }
 
         public async Task<bool> AddItemAsync(Item item)
         {

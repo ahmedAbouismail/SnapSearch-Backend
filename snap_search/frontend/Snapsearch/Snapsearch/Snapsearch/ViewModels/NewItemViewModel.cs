@@ -52,7 +52,7 @@ namespace Snapsearch.ViewModels
             Item newItem = new Item()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = Text,
+                Path = Text,
                 Description = Description
             };
 

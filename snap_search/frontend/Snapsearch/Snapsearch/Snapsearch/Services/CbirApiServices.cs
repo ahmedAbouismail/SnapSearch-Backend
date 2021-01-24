@@ -47,7 +47,7 @@ namespace Snapsearch.Services
         {
             // set endpoint for the restClient
             // todo - change 11 to int variable for settings page
-            restClient = new RestClient("http://snapsearch.westeurope.cloudapp.azure.com:5000/uploadimage/11");
+            restClient = new RestClient("http://137.117.141.110/uploadimage/11");
 
             // don't time out connection
             restClient.Timeout = -1;
