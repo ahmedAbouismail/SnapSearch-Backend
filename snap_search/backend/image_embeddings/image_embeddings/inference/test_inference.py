@@ -48,7 +48,6 @@ class Test_Inference(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertEqual(result, checkValue)
         
-
     def test_bytes_feature(self):
         """
         test the function with two types String and Byte
@@ -76,7 +75,6 @@ class Test_Inference(unittest.TestCase):
         self.assertIsNotNone(resultByte)
         self.assertEqual(resultByte, checkValueByte)
         
-
     def test_serialize_example(self):
         """
         pass fake image and image name to test the function
@@ -134,8 +132,7 @@ class Test_Inference(unittest.TestCase):
         self.assertIsNotNone(result[1])
         self.assertIsInstance(result[0], tf.Tensor)
         self.assertIsInstance(result[1], tf.Tensor)
-
-    
+   
     def test_parse_function(self):
         """
         path .tfrecord to test the func
@@ -197,8 +194,6 @@ class Test_Inference(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertIsInstance(result, tf.data.Dataset)
         
-        
-    
     def test_tfrecords_to_write_embeddings(self):
         """
         pass the tfrecords to write embeddings
@@ -215,7 +210,6 @@ class Test_Inference(unittest.TestCase):
             path = ("D:/HTW/Software Entwicklung/CBIR DB/gl/team9/snap_search/backend/image_embeddings/system_files/tf_flower_embeddings/part-00%s-db.parquet" %i)
             assert os.path.exists(path)
         
-
     def test_list_files(self):
         """
         path the database_folder to test the func
@@ -256,18 +250,28 @@ class Test_Inference(unittest.TestCase):
         self.assertIsInstance(result, tf.data.Dataset)
 
         
-    
     def test_write_tfrecord(self):
-        """
-        pass the output_folder to write the tf files 
-
-        part_1: assert os.path.exists(path ->
-                check if the tfrecord has been written 
-        """
         inference.write_tfrecord(output_folder=tf_output, single_photo=False)
         
         assert os.path.exists(tf_output)
 
 
 if __name__ == '__main__':
-    unittest.main()
+    suite=unittest.TestSuite()
+    suite.addTest(Test_Inference("test_run_inference"))
+    suite.addTest(Test_Inference("test_int64_feature"))
+    suite.addTest(Test_Inference("test_bytes_feature"))
+    suite.addTest(Test_Inference("test_serialize_example"))
+    suite.addTest(Test_Inference("test_tf_serialize_example"))
+    suite.addTest(Test_Inference("test_process_path"))
+    suite.addTest(Test_Inference("test_parse_function"))
+    suite.addTest(Test_Inference("test_preprocess_image"))
+    suite.addTest(Test_Inference("test_read_tfrecord"))
+    suite.addTest(Test_Inference("test_tfrecords_to_write_embeddings"))
+    suite.addTest(Test_Inference("test_list_files"))
+    suite.addTest(Test_Inference("test_read_data_from_files"))
+    result = unittest.TextTestRunner(verbosity=2).run(suite)
+    if result.wasSuccessful():
+        exit(0)
+    else:
+        exit(1)
