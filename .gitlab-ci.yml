@@ -22,6 +22,6 @@ build:image_embeddings:
     - docker build -t $CI_REGISTRY_IMAGE snap_search/backend/image_embeddings
     - docker push  $CI_REGISTRY_IMAGE
   dependencies:
-    - test:image_embeddings
+    - test
 
 
