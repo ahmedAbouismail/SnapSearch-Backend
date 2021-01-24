@@ -1,9 +1,10 @@
 
 image:  delphairegistry/dind-az-kctl-helm:v1.6
-tags:
-   - linux 
 
 test:image_embeddings:
+  tags:
+    - linux 
+
   stage: test
   script: 
    - set -e
@@ -13,6 +14,8 @@ test:image_embeddings:
    - python3 image_embeddings/knn/test_knn.py
   
 build:image_embeddings:
+  tags:
+    - linux 
   stage: build
   script: 
     - docker login $CI_REGISTRY -u $CI_USERNAME -p $CI_REGISTRY_PASSWORD
