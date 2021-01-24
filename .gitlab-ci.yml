@@ -18,5 +18,4 @@ build:image_embeddings:
     - docker login $CI_REGISTRY -u $CI_USERNAME -p $CI_REGISTRY_PASSWORD
     - docker build -t $CI_REGISTRY_IMAGE snap_search/backend/image_embeddings
     - docker push  $CI_REGISTRY_IMAGE
-  dependencies:
-    - test:image_embeddings
+
