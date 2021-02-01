@@ -19,6 +19,7 @@
     </Shell.TitleView>
     <ContentPage.Content>
         <Grid>
+            <Rectangle VerticalOptions="Start" Background="#3F3D56"></Rectangle>
             <Frame
 
                     VerticalOptions="Start"

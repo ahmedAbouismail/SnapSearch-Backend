@@ -26,10 +26,11 @@
         <viewModels:ResultsPageViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        
+
         <AbsoluteLayout>
             <!--  Elements that are not results  -->
             <!-- Bottom Gradient -->
+            
             <Frame
                     
                     VerticalOptions="Start"
@@ -58,7 +59,7 @@
                 Source="snapsearch_logo" />
             <!--  The image that was searched  -->
             <Image x:Name="GenericImage"/>
-            <Frame x:Name="PickedImageFrame" HeightRequest="170" WidthRequest="170" BorderColor="Black" CornerRadius="16">
+            <Frame x:Name="PickedImageFrame" HeightRequest="190" WidthRequest="190" BorderColor="Black" CornerRadius="16">
                 <Frame.Background>
                     <!--  StartPoint defaults to (0,0)  -->
                     <LinearGradientBrush  >
@@ -68,12 +69,13 @@
                   Offset="0.00001" />
                         <GradientStop Color="Purple"
                   Offset="0.00002" />
-
+                        
 
                     </LinearGradientBrush>
                 </Frame.Background>
+                <Image x:Name="PickedImage" Aspect="AspectFill"/>
             </Frame>
-            <Image x:Name="PickedImage"/>
+            
             <!--  Text for informing the user with the amount of search results  -->
             <Label x:Name="TextLabel" Text="We found 10 images" />
             <ScrollView
@@ -139,6 +141,7 @@
                 </Grid>
             </ScrollView>
         </AbsoluteLayout>
+
     </ContentPage.Content>
 </ContentPage>
 

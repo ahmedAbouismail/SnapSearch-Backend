@@ -21,6 +21,7 @@
     <ContentPage.Content>
         <Grid>
             <!-- Bottom Gradient -->
+            <Rectangle VerticalOptions="Start" Background="#3F3D56"></Rectangle>
 
             <Frame
 

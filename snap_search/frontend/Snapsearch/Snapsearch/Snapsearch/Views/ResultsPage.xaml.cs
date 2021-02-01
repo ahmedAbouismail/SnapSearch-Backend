@@ -71,10 +71,10 @@ namespace Snapsearch.Views
 
             // Generic Image
             Rectangle genericImageFrameRect = new Rectangle(
-                x: width / 2 - 170 / 2,
+                x: width / 2 - 180 / 2,
                 y: 2 * Margin + logoRect.Height - 10,
-                width: 170,
-                height: 170);
+                width: 180,
+                height: 180);
             AbsoluteLayout.SetLayoutBounds(PickedImageFrame, genericImageFrameRect);
 
             // Text Label 

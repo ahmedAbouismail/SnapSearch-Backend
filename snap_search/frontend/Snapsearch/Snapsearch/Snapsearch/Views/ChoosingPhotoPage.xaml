@@ -29,7 +29,7 @@
             ColumnDefinitions="*, 50, 50, *"
             RowDefinitions="*,AUTO">
 
-
+            <Rectangle VerticalOptions="Start" Background="#3F3D56" Grid.ColumnSpan="4"></Rectangle>
 
             <!-- Bottom Gradient -->
             <Frame
@@ -42,7 +42,7 @@
                     <!--  StartPoint defaults to (0,0)  -->
                     <LinearGradientBrush  >
                         <GradientStop Color="#3F3D56"
-                  Offset="0.0" />
+                   />
                         <GradientStop Color="#3F3D56"
                   Offset="0.00001" />
                         <GradientStop Color="DarkOrange"
@@ -150,20 +150,13 @@
                 <Path Data="M124.857 153.591C122.99 152.778 121.338 151.542 120.03 149.981C118.723 148.42 117.796 146.576 117.323 144.596C116.85 142.615 116.844 140.551 117.305 138.568C117.766 136.584 118.682 134.735 119.98 133.166C118.475 134.265 117.221 135.672 116.301 137.293C115.381 138.913 114.816 140.711 114.644 142.567C114.472 144.423 114.696 146.294 115.303 148.056C115.909 149.818 116.883 151.431 118.161 152.788C119.438 154.145 120.99 155.215 122.712 155.926C124.435 156.638 126.289 156.975 128.151 156.915C130.014 156.855 131.843 156.4 133.516 155.58C135.189 154.759 136.669 153.592 137.857 152.156C136.004 153.51 133.829 154.355 131.548 154.607C129.268 154.859 126.961 154.509 124.857 153.591Z" Fill="#3F3D56"/>
             </Grid>
             <!-- Picked Image -->
-            <Image
-                x:Name="PickedImage"
-                Grid.Row="0"
-                Grid.ColumnSpan="4" 
-                HeightRequest="400"
-                WidthRequest="400"
-                HorizontalOptions="Center"
-                TranslationY="-20"
-                VerticalOptions="Center"/>
+
             <Frame HorizontalOptions="Center" Grid.Row="0" Grid.ColumnSpan="4" HeightRequest="10" WidthRequest="400" Margin="20,100,20,200" Opacity="1" x:Name="PickedImageFrame" BorderColor="Black" HasShadow="True" CornerRadius="16">
                 <Frame.Background>
                     <!--  StartPoint defaults to (0,0)  -->
                     <LinearGradientBrush  >
                         <GradientStop Color="Orange"
+                                      
                   Offset="0.0" />
      
                         <GradientStop Color="Purple"
@@ -172,6 +165,17 @@
 
                     </LinearGradientBrush>
                 </Frame.Background>
+                <Image
+                x:Name="PickedImage"
+                Grid.Row="0"
+                Grid.ColumnSpan="4" 
+                HeightRequest="400"
+                    
+                WidthRequest="400"
+                HorizontalOptions="Center"
+                TranslationY="-20"
+                VerticalOptions="Center"
+                    Aspect="AspectFill"/>
             </Frame>
 
 
